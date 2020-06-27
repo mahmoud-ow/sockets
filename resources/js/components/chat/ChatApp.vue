@@ -45,8 +45,8 @@ export default {
                 this.selectedContact = contact;
             });
         },
-        saveNewMessage(text) {
-            this.messages.push(text);
+        saveNewMessage(message) {
+            this.messages.push(message);
         },
 
         handleIncoming(message) {
