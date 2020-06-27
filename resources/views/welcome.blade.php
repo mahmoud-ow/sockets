@@ -87,7 +87,7 @@
         <div class="content">
             <div class="title m-b-md">
                 <p>
-                    <h1>ASWAQ Construction</h1>
+                    <h1>ASWAQ</h1>
                 </p>
             </div>
 
@@ -111,7 +111,7 @@ stopwaitsecs=3600 --}}
     <script>
         Echo.channel('home')
             .listen('NewMessage', (e) => {
-                console.log(e);
+                console.log(e.message);
             });
     </script>
 
