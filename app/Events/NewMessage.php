@@ -41,6 +41,7 @@ class NewMessage implements ShouldBroadcast
     }
 
     public function broadcastwith(){
+        $this->message->load('fromContact');
         return ['message' => $this->message];
     }
 }
