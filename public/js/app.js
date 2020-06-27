@@ -1908,7 +1908,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Conversation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Conversation */ "./resources/js/components/chat/Conversation.vue");
+/* harmony import */ var _Conversation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Conversation */ "./resources/js/components/chat/Conversation.vue");
 /* harmony import */ var _ContactsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContactsList */ "./resources/js/components/chat/ContactsList.vue");
 //
 //
@@ -1970,7 +1970,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    Conversation: _Conversation__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Conversation: _Conversation__WEBPACK_IMPORTED_MODULE_0__["default"],
     ContactsList: _ContactsList__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
@@ -2038,7 +2038,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _MessagesFeed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MessagesFeed */ "./resources/js/components/chat/MessagesFeed.vue");
+/* harmony import */ var _MessagesFeed__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MessagesFeed */ "./resources/js/components/chat/MessagesFeed.vue");
 /* harmony import */ var _MessageComposer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MessageComposer */ "./resources/js/components/chat/MessageComposer.vue");
 //
 //
@@ -2078,7 +2078,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    MessagesFeed: _MessagesFeed__WEBPACK_IMPORTED_MODULE_2__["default"],
+    MessagesFeed: _MessagesFeed__WEBPACK_IMPORTED_MODULE_0__["default"],
     MessageComposer: _MessageComposer__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });

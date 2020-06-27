@@ -9,9 +9,9 @@
 
 
 
-                <div class="card-body" id="app">
-                
+                <div class="card-body" id="app" style="padding: 0">
 
+                    <chat-app :user="{{auth()->user()}}" />
 
                 </div>
 
