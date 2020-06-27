@@ -111,7 +111,7 @@ stopwaitsecs=3600 --}}
     <script>
         Echo.channel('home')
             .listen('NewMessage', (e) => {
-                console.log('done');
+                console.log(e);
             });
     </script>
 
