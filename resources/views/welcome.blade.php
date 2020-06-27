@@ -103,7 +103,7 @@
         </div>
     </div>
 
-[program:queue-worker]
+{{-- [program:queue-worker]
 process_name=%(program_name)s_%(process_num)02d
 command=php /var/www/html/artisan queue:work
 autostart=true
@@ -112,7 +112,7 @@ user=forge
 numprocs=8
 redirect_stderr=true
 stdout_logfile=/home/forge/app.com/worker.log
-stopwaitsecs=3600
+stopwaitsecs=3600 --}}
 
 
     <script src='{{asset("js/app.js")}}' type='text/javascript'></script>
