@@ -41,7 +41,7 @@ return [
                 'host' => env('WEBSOCKET_HOST'),
                 'port' => 6001,
                 'scheme' => env('PUSHER_SCHEME'),
-                
+                'curl_options' => [ CURLOPT_SSL_VERIFYHOST => 0, CURLOPT_SSL_VERIFYPEER => 0, ] ],
             ],
         ],
 
