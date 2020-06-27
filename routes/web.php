@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 
-lkreiger@example.com
-wbernhard@example.net
-everette.larson@example.net
+anna.treutel@example.org
+littel.adah@example.net
+tromp.annie@example.com
 
 */
 

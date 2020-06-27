@@ -2007,6 +2007,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     contacts: {
@@ -6645,7 +6646,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".contacts-list[data-v-7d33fe4d] {\n  flex: 2;\n  max-height: 600px;\n  overflow: scroll;\n  border-left: 1px solid #ddd;\n}\n.contacts-list ul[data-v-7d33fe4d] {\n  list-style-type: none;\n  padding-left: 0;\n}\n.contacts-list ul li[data-v-7d33fe4d] {\n  display: flex;\n  padding: 2px;\n  border-bottom: 1px solid #DDD;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-7d33fe4d] {\n  background-color: #dfdfdf;\n}\n.contacts-list ul .avatar[data-v-7d33fe4d] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\n.contacts-list ul .avatar img[data-v-7d33fe4d] {\n  width: 35px;\n  border-radius: 50px;\n  margin: 0 auto;\n}\n.contacts-list ul .contact[data-v-7d33fe4d] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.contacts-list ul .contact p[data-v-7d33fe4d] {\n  margin: 0;\n}\n.contacts-list ul .contact p.name[data-v-7d33fe4d] {\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".contacts-list[data-v-7d33fe4d] {\n  flex: 2;\n  max-height: 600px;\n  overflow: scroll;\n  border-left: 1px solid #ddd;\n}\n.contacts-list ul[data-v-7d33fe4d] {\n  list-style-type: none;\n  padding-left: 0;\n}\n.contacts-list ul li[data-v-7d33fe4d] {\n  display: flex;\n  padding: 2px;\n  border-bottom: 1px solid #DDD;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-7d33fe4d] {\n  background-color: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-7d33fe4d] {\n  background-color: #82e0e8;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  justify-content: center;\n  align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul .avatar[data-v-7d33fe4d] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\n.contacts-list ul .avatar img[data-v-7d33fe4d] {\n  width: 35px;\n  border-radius: 50px;\n  margin: 0 auto;\n}\n.contacts-list ul .contact[data-v-7d33fe4d] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.contacts-list ul .contact p[data-v-7d33fe4d] {\n  margin: 0;\n}\n.contacts-list ul .contact p.name[data-v-7d33fe4d] {\n  font-weight: bold;\n}", ""]);
 
 // exports
 
@@ -44657,7 +44658,13 @@ var render = function() {
               _c("p", { staticClass: "name" }, [_vm._v(_vm._s(contact.name))]),
               _vm._v(" "),
               _c("p", { staticClass: "email" }, [_vm._v(_vm._s(contact.email))])
-            ])
+            ]),
+            _vm._v(" "),
+            contact.unread
+              ? _c("span", { staticClass: "unread" }, [
+                  _vm._v(_vm._s(contact.unread) + " ")
+                ])
+              : _vm._e()
           ]
         )
       }),
