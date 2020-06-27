@@ -85,7 +85,9 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Laravel
+                <p>
+                    Laravel
+                </p>
             </div>
 
             <div class="links">
@@ -100,6 +102,17 @@
             </div>
         </div>
     </div>
+
+[program:queue-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/html/artisan queue:work
+autostart=true
+autorestart=true
+user=forge
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/home/forge/app.com/worker.log
+stopwaitsecs=3600
 
 
     <script src='{{asset("js/app.js")}}' type='text/javascript'></script>

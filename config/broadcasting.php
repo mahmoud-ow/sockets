@@ -41,8 +41,30 @@ return [
                 'host' => env('WEBSOCKET_HOST'),
                 'port' => 6001,
                 'scheme' => env('PUSHER_SCHEME'),
-                'curl_options' => [ CURLOPT_SSL_VERIFYHOST => 0, CURLOPT_SSL_VERIFYPEER => 0, ] ],
+                'curl_options' => [ CURLOPT_SSL_VERIFYHOST => 0, CURLOPT_SSL_VERIFYPEER => 0, ],
+                
             ],
+
+
+
+            /* 
+            // worked online at do with ssl
+            'driver' => 'pusher',
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
+            'app_id' => env('PUSHER_APP_ID'),
+            'options' => [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'useTLS' => true,
+                'host' => env('WEBSOCKET_HOST'),
+                'port' => 6001,
+                'scheme' => env('PUSHER_SCHEME'),
+                'curl_options' => [ CURLOPT_SSL_VERIFYHOST => 0, CURLOPT_SSL_VERIFYPEER => 0, ],
+                
+            ],
+            */
+
+
         ],
 
         'redis' => [
