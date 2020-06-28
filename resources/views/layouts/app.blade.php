@@ -112,12 +112,9 @@
     <script>
         $(document).ready(function(){
 
-            /* 
-            Echo.channel('home')
-            .listen('NewMessage', (e) => {
-                console.log(e.message);
-            }); 
-            */
+            Echo.private(`messages.${this.user.id}`).listen("NewMessage", e => {
+            this.handleIncoming(e.message);
+        });
             
         });/* /ready() */
 
