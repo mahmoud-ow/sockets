@@ -1940,7 +1940,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log(this.user);
+    //console.log(this.user);
     Echo["private"]("messages.".concat(this.user.id)).listen("NewMessage", function (e) {
       _this.handleIncoming(e.message);
     });
@@ -1954,6 +1954,7 @@ __webpack_require__.r(__webpack_exports__);
 
       $(".contacts-list").removeClass('swing-in-top-fwd');
       $(".contacts-list").addClass('swing-out-top-bck');
+      $(".composer textarea").focus();
       this.updateUnreadCount(contact, true);
       axios.get("/conversations/".concat(contact.id)).then(function (response) {
         _this2.messages = response.data;

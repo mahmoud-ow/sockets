@@ -28,8 +28,7 @@ export default {
         };
     },
     mounted() {
-        
-        console.log(this.user);
+        //console.log(this.user);
 
         Echo.private(`messages.${this.user.id}`).listen("NewMessage", e => {
             this.handleIncoming(e.message);
@@ -48,7 +47,7 @@ export default {
 
             $(".contacts-list").removeClass('swing-in-top-fwd');
             $(".contacts-list").addClass('swing-out-top-bck');
-
+            $(".composer textarea").focus();
             
 
             this.updateUnreadCount(contact, true);
