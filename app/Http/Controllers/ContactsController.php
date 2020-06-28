@@ -26,7 +26,9 @@ class ContactsController extends Controller
         
 
         // get conversations
-        $conversations = Message::where(function($query){
+        $conversations = DB::table('messages')
+        ->select('*')
+        ->where(function($query){
             $query->where('to', auth()->id())->orWhere('from', auth()->id());
         })
         ->groupBy('to')
