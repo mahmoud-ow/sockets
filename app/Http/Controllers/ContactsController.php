@@ -14,11 +14,12 @@ class ContactsController extends Controller
     
     public function get(Request $request){
         
-        $from_ids = Message::selectRaw(' `to` , `from` ')->where( 'to' , 16 )->groupBy('to', 'from')->get();
+        $from_ids = Message::selectRaw(' `to` , `from` ')->where( 'to' , auth()->id() )->groupBy('to', 'from')->get();
+        $to_ids = Message::selectRaw(' `to` , `from` ')->where( 'from' , auth()->id() )->groupBy('to', 'from')->get();
         //Message::selectRaw(' ANY_VALUE(`from`), `to`')->where( 'to' , auth()->id() )->groupBy('to')->get();
         
         
-        return $from_ids;
+        //return $from_ids .'<hr />' . $to_ids;
 
         // get all users except the auth()
         $contacts = User::where('id', '<>', auth()->user()->id)->get();
