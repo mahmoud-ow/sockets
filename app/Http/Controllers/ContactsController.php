@@ -39,7 +39,7 @@ class ContactsController extends Controller
        
 
         // add an unread key to each contact with the count of unread messages
-        $contacts = $contacts->map(function($contact) use ($unreadIds) {
+        $contacts = $contacts->map(function($contact) use ($unreadIds, $conversations) {
             
             $contactUnread = $unreadIds->where('sender_id', $contact->id)->first();
 
