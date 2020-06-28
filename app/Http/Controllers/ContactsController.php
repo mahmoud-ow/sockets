@@ -23,36 +23,15 @@ class ContactsController extends Controller
         ->where('read', false)
         ->groupBy('from')
         ->get();
-        
 
-        // get conversations
-        $conversations = DB::table('messages')
-        ->select('*')
-        ->where(function($query){
-            $query->where('to', auth()->id())->orWhere('from', auth()->id());
-        })
-        ->get();
-
-
-        //return $conversations;
-
-       
 
         // add an unread key to each contact with the count of unread messages
-        $contacts = $contacts->map(function($contact) use ($unreadIds, $conversations) {
-            
+        $contacts = $contacts->map(function($contact) use ($unreadIds) {
             $contactUnread = $unreadIds->where('sender_id', $contact->id)->first();
+
             $contact->unread = $contactUnread ? $contactUnread->messages_count : 0;
 
-
-            $valid_contact = $conversations->where('to', $contact->id)->orWhere('from', $contact->id)->get();
-            
-
-            if( $valid_contact ){
-                return $contact;
-            }
-
-            
+            return $contact;
         });
 
 
