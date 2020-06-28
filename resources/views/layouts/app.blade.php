@@ -112,8 +112,9 @@
     <script>
         $(document).ready(function(){
 
-            Echo.private(`messages.1`).listen("NewMessage", e => {
-                console.log('hello there');
+            Echo.channel('home')
+            .listen('NewMessage', (e) => {
+                console.log(e.message);
             });
             
         });/* /ready() */
