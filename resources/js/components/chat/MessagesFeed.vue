@@ -77,14 +77,14 @@ export default {
                 }
 
                 &.recieved {
-                    text-align: right;
+                    text-align: left;
                     .text {
                         background-color: #b2b2b2;
                     }
                 }
 
                 &.sent {
-                    text-align: left;
+                    text-align: right;
                     .text {
                         background-color: #81c4f9;
                     }

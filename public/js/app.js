@@ -6778,7 +6778,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".feed[data-v-26736974] {\n  height: 100%;\n  background-color: #f3f3f3;\n  overflow-y: hidden;\n  position: relative;\n}\n.feed ul[data-v-26736974] {\n  list-style-type: none;\n  padding: 5px;\n  margin-bottom: 0;\n}\n.feed ul li.message[data-v-26736974] {\n  margin: 10px 0;\n  width: 100%;\n}\n.feed ul li.message .text[data-v-26736974] {\n  max-width: 200px;\n  border-radius: 5px;\n  padding: 12px;\n  display: inline-block;\n}\n.feed ul li.message.recieved[data-v-26736974] {\n  text-align: right;\n}\n.feed ul li.message.recieved .text[data-v-26736974] {\n  background-color: #b2b2b2;\n}\n.feed ul li.message.sent[data-v-26736974] {\n  text-align: left;\n}\n.feed ul li.message.sent .text[data-v-26736974] {\n  background-color: #81c4f9;\n}", ""]);
+exports.push([module.i, ".feed[data-v-26736974] {\n  height: 100%;\n  background-color: #f3f3f3;\n  overflow-y: hidden;\n  position: relative;\n}\n.feed ul[data-v-26736974] {\n  list-style-type: none;\n  padding: 5px;\n  margin-bottom: 0;\n}\n.feed ul li.message[data-v-26736974] {\n  margin: 10px 0;\n  width: 100%;\n}\n.feed ul li.message .text[data-v-26736974] {\n  max-width: 200px;\n  border-radius: 5px;\n  padding: 12px;\n  display: inline-block;\n}\n.feed ul li.message.recieved[data-v-26736974] {\n  text-align: left;\n}\n.feed ul li.message.recieved .text[data-v-26736974] {\n  background-color: #b2b2b2;\n}\n.feed ul li.message.sent[data-v-26736974] {\n  text-align: right;\n}\n.feed ul li.message.sent .text[data-v-26736974] {\n  background-color: #81c4f9;\n}", ""]);
 
 // exports
 
