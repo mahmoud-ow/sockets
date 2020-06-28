@@ -14,9 +14,9 @@ class ContactsController extends Controller
     
     public function get(Request $request){
         
-        $from_ids = Message::groupBy('from')->get();
+        $from_ids = Message::selectRaw(' ANY_VALUE(`from`), `to`')->where( 'to' , auth()->id() )->groupBy('to')->get();
         
-
+        
         return $from_ids;
 
         // get all users except the auth()
