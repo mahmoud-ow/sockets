@@ -31,7 +31,6 @@ class ContactsController extends Controller
         ->where(function($query){
             $query->where('to', auth()->id())->orWhere('from', auth()->id());
         })
-        ->groupBy('message.from')
         ->get();
 
 
