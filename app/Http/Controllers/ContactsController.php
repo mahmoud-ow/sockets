@@ -30,7 +30,7 @@ class ContactsController extends Controller
 
 
         // get all users except the auth()
-        $contacts = User::where('id', '<>', auth()->user()->id)->whereIn($valid_users)->get();
+        $contacts = User::where('id', '<>', auth()->user()->id)->whereIn('id', $valid_users)->get();
 
         $unreadIds = Message::select(DB::raw('`from` as sender_id, count(`from`) as messages_count'))
         ->where('to', auth()->id())
