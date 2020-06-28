@@ -112,9 +112,9 @@
     <script>
         $(document).ready(function(){
 
-            Echo.private(`messages.${this.user.id}`).listen("NewMessage", e => {
-            this.handleIncoming(e.message);
-        });
+            Echo.private(`messages.1`).listen("NewMessage", e => {
+                console.log('hello there');
+            });
             
         });/* /ready() */
 
