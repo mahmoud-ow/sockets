@@ -14,9 +14,9 @@ class ContactsController extends Controller
     
     public function get(Request $request){
         
+
         $from_ids = Message::selectRaw(' `to` , `from` ')->where( 'to' , auth()->id() )->groupBy('to', 'from')->get();
         $to_ids = Message::selectRaw(' `to` , `from` ')->where( 'from' , auth()->id() )->groupBy('to', 'from')->get();
-        
         $valid_users = [];
         foreach( $from_ids as $from_user ){
             $valid_users[] = $from_user->from;
@@ -24,14 +24,13 @@ class ContactsController extends Controller
         foreach( $to_ids as $to_user ){
             $valid_users[] = $to_user->to;
         }
-
         $valid_users = array_unique($valid_users);
-        print_r( $valid_users );
-        return ;
-        return $from_ids .'<hr />' . $to_ids;
+
+
+
 
         // get all users except the auth()
-        $contacts = User::where('id', '<>', auth()->user()->id)->get();
+        $contacts = User::where('id', '<>', auth()->user()->id)->whereIn($valid_users)->get();
 
         $unreadIds = Message::select(DB::raw('`from` as sender_id, count(`from`) as messages_count'))
         ->where('to', auth()->id())
