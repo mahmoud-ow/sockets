@@ -48,7 +48,7 @@ export default {
             return _.sortBy(this.contacts, [
                 contact => {
                     if (contact == this.selected) {
-                        return Infinity;
+                        //return Infinity;
                     }
                     return contact.unread;
                 }

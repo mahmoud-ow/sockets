@@ -2044,8 +2044,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       return _.sortBy(this.contacts, [function (contact) {
-        if (contact == _this.selected) {
-          return Infinity;
+        if (contact == _this.selected) {//return Infinity;
         }
 
         return contact.unread;
