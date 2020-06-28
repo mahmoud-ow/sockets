@@ -28,7 +28,10 @@ class ContactsController extends Controller
         // get conversations
         $conversations = Message::where(function($query){
             $query->where('to', auth()->id())->orWhere('from', auth()->id());
-        })->get();
+        })
+        ->groupBy('to')
+        ->groupBy('from')
+        ->get();
 
 
         return $conversations;
