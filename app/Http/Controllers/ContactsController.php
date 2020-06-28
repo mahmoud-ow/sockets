@@ -19,7 +19,7 @@ class ContactsController extends Controller
         //Message::selectRaw(' ANY_VALUE(`from`), `to`')->where( 'to' , auth()->id() )->groupBy('to')->get();
         
         
-        //return $from_ids .'<hr />' . $to_ids;
+        return $from_ids .'<hr />' . $to_ids;
 
         // get all users except the auth()
         $contacts = User::where('id', '<>', auth()->user()->id)->get();
