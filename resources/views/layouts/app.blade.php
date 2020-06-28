@@ -110,14 +110,12 @@
 
 
     <script>
-        
-        Echo.channel('home')
-        .listen('NewMessage', (e) => {
-            console.log(e.message);
-        });
-      
         $(document).ready(function(){
 
+            Echo.channel('home')
+            .listen('NewMessage', (e) => {
+                console.log(e.message);
+            });
             
         });/* /ready() */
 
