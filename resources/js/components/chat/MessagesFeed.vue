@@ -18,7 +18,6 @@
 
 <script>
 
-//window.contact_list = new PerfectScrollbar('.contacts-list');
 export default {
     props: {
         contact: {

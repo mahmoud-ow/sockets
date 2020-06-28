@@ -1940,10 +1940,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    //console.log(this.user);
+    console.log(this.user);
     Echo["private"]("messages.".concat(this.user.id)).listen("NewMessage", function (e) {
-      alert('ok');
-
       _this.handleIncoming(e.message);
     });
     axios.get("/contacts").then(function (response) {
@@ -2225,7 +2223,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//window.contact_list = new PerfectScrollbar('.contacts-list');
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     contact: {

@@ -28,10 +28,10 @@ export default {
         };
     },
     mounted() {
-        //console.log(this.user);
+        
+        console.log(this.user);
 
         Echo.private(`messages.${this.user.id}`).listen("NewMessage", e => {
-            alert('ok');
             this.handleIncoming(e.message);
         });
 
