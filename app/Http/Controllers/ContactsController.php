@@ -14,7 +14,8 @@ class ContactsController extends Controller
     
     public function get(Request $request){
         
-        $from_ids = Message::selectRaw(' ANY_VALUE(`from`), `to`')->where( 'to' , auth()->id() )->groupBy('to')->get();
+        $from_ids = Message::selectRaw(' `to` , `from` ')->where( 'to' , 16 )->groupBy('to', 'from')->get();
+        //Message::selectRaw(' ANY_VALUE(`from`), `to`')->where( 'to' , auth()->id() )->groupBy('to')->get();
         
         
         return $from_ids;
