@@ -42,16 +42,11 @@ class ContactsController extends Controller
         $contacts = $contacts->map(function($contact) use ($unreadIds, $conversations) {
             
             $contactUnread = $unreadIds->where('sender_id', $contact->id)->first();
-
             $contact->unread = $contactUnread ? $contactUnread->messages_count : 0;
 
-            $valid_contact = $conversations->where(function($query){
-                $query->where('to', $contact->id)->orWhere('from', $contact->id);
-            })->first();
+
+            $valid_contact = $conversations->where('to', $contact->id)->orWhere('from', $contact->id)->get();
             
-            /* 
-            ->orWhere('to', $contact->id)
-            */
 
             if( $valid_contact ){
                 return $contact;
