@@ -34,7 +34,7 @@ class ContactsController extends Controller
         ->get();
 
 
-        return $conversations;
+        //return $conversations;
 
        
 
@@ -45,7 +45,13 @@ class ContactsController extends Controller
 
             $contact->unread = $contactUnread ? $contactUnread->messages_count : 0;
 
-            return $contact;
+            $valid_contact = $conversations->where('from', $contact->id)->orWhere('to', $contact->id)->first();
+            
+            if( $valid_contact ){
+                return $contact;
+            }
+
+            
         });
 
 
