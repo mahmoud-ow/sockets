@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
 export default {
     props: {
         contacts: {
@@ -59,15 +60,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+
 .contacts-list {
+    transition: all 0.3s ease;
     flex: 2;
     max-height: 600px;
-    overflow: scroll;
-    border-left: 1px solid #ddd;
+    // overflow: scroll;
+    // border-left: 1px solid #ddd;
+    /*  */
+    position: absolute;
+    z-index: 1;
+    background-color: #FFF;
+    width: 100%;
+    height: 100%;
 
     ul {
         list-style-type: none;
         padding-left: 0;
+        margin-bottom: 0;
 
         li {
             display: flex;
@@ -96,6 +108,10 @@ export default {
                 padding: 0 4px;
                 border-radius: 3px;
             }
+        }
+
+        > li:last-of-type{
+            border-bottom: none;
         }
 
         .avatar {
@@ -128,4 +144,89 @@ export default {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+@-webkit-keyframes swing-out-top-bck {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+  }
+}
+@keyframes swing-out-top-bck {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+  }
+}
+
+.swing-out-top-bck {
+	-webkit-animation: swing-out-top-bck 0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both;
+	        animation: swing-out-top-bck 0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both;
+}
+.swing-in-top-fwd {
+	-webkit-animation: swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+	        animation: swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+}
+@-webkit-keyframes swing-in-top-fwd {
+  0% {
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+  }
+}
+@keyframes swing-in-top-fwd {
+  0% {
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+  }
+}
+
 </style>

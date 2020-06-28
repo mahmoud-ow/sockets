@@ -37,10 +37,19 @@ export default {
         axios.get("/contacts").then(response => {
             this.contacts = response.data;
         });
+
+        
     },
     methods: {
         startConversationWith(contact) {
+
+           
+
+            $(".contacts-list").removeClass('swing-in-top-fwd');
+            $(".contacts-list").addClass('swing-out-top-bck');
+
             
+
             this.updateUnreadCount(contact, true);
 
             axios.get(`/conversations/${contact.id}`).then(response => {
@@ -83,5 +92,7 @@ export default {
 <style lang="scss" scoped>
 .chat-app {
     display: flex;
+    height: 100%;
+    position: relative;
 }
 </style>

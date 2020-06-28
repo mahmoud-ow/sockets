@@ -1,6 +1,44 @@
 <template>
     <div class="conversation">
-        <h1>{{ contact ? contact.name : "Select a Contact" }}</h1>
+        <h1>
+            <div @click="openContactList()">
+                <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    class="bi bi-list"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                    />
+                </svg>
+            </div>
+
+            <div>{{ contact ? contact.name : "Select a Contact" }}</div>
+
+            <div>
+                <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    class="bi bi-x"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"
+                    />
+                    <path
+                        fill-rule="evenodd"
+                        d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"
+                    />
+                </svg>
+            </div>
+        </h1>
         <MessagesFeed :contact="contact" :messages="messages" />
         <MessageComposer @send="sendMessage" />
     </div>
@@ -36,6 +74,10 @@ export default {
                 .then(response => {
                     this.$emit("new", response.data);
                 });
+        },
+        openContactList() {
+            $(".contacts-list").removeClass("swing-out-top-bck");
+            $(".contacts-list").addClass("swing-in-top-fwd");
         }
     },
 
@@ -51,10 +93,26 @@ export default {
     justify-content: space-between;
 
     h1 {
-        font-size: 20px;
         margin: 0;
-        padding: 10px;
         border-bottom: 1px dashed lightgray;
+        display: flex;
+
+        > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        > div:nth-of-type(1),
+        > div:nth-of-type(3) {
+            width: 40px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        > div:nth-of-type(2) {
+            width: 220px;
+            font-size: 15px;
+        }
     }
 }
 </style>

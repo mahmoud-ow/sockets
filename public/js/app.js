@@ -1952,6 +1952,8 @@ __webpack_require__.r(__webpack_exports__);
     startConversationWith: function startConversationWith(contact) {
       var _this2 = this;
 
+      $(".contacts-list").removeClass('swing-in-top-fwd');
+      $(".contacts-list").addClass('swing-out-top-bck');
       this.updateUnreadCount(contact, true);
       axios.get("/conversations/".concat(contact.id)).then(function (response) {
         _this2.messages = response.data;
@@ -2074,6 +2076,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2101,6 +2141,10 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.$emit("new", response.data);
       });
+    },
+    openContactList: function openContactList() {
+      $(".contacts-list").removeClass("swing-out-top-bck");
+      $(".contacts-list").addClass("swing-in-top-fwd");
     }
   },
   components: {
@@ -2179,6 +2223,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//window.contact_list = new PerfectScrollbar('.contacts-list');
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     contact: {
@@ -2193,6 +2238,8 @@ __webpack_require__.r(__webpack_exports__);
     scrollToBottom: function scrollToBottom() {
       var _this = this;
 
+      window.chat_feed.update();
+      this.$refs.feed.scrollTop = 0;
       setTimeout(function () {
         _this.$refs.feed.scrollTop = _this.$refs.feed.scrollHeight - _this.$refs.feed.clientHeight;
       }, 50);
@@ -2205,6 +2252,9 @@ __webpack_require__.r(__webpack_exports__);
     messages: function messages(_messages) {
       this.scrollToBottom();
     }
+  },
+  mounted: function mounted() {
+    window.chat_feed = new PerfectScrollbar('.feed');
   }
 });
 
@@ -6652,7 +6702,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".chat-app[data-v-1526169d] {\n  display: flex;\n}", ""]);
+exports.push([module.i, ".chat-app[data-v-1526169d] {\n  display: flex;\n  height: 100%;\n  position: relative;\n}", ""]);
 
 // exports
 
@@ -6671,7 +6721,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".contacts-list[data-v-7d33fe4d] {\n  flex: 2;\n  max-height: 600px;\n  overflow: scroll;\n  border-left: 1px solid #ddd;\n}\n.contacts-list ul[data-v-7d33fe4d] {\n  list-style-type: none;\n  padding-left: 0;\n}\n.contacts-list ul li[data-v-7d33fe4d] {\n  display: flex;\n  padding: 2px;\n  border-bottom: 1px solid #ddd;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-7d33fe4d] {\n  background-color: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-7d33fe4d] {\n  background-color: #82e0e8;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  justify-content: center;\n  align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul .avatar[data-v-7d33fe4d] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\n.contacts-list ul .avatar img[data-v-7d33fe4d] {\n  width: 35px;\n  border-radius: 50px;\n  margin: 0 auto;\n}\n.contacts-list ul .contact[data-v-7d33fe4d] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.contacts-list ul .contact p[data-v-7d33fe4d] {\n  margin: 0;\n}\n.contacts-list ul .contact p.name[data-v-7d33fe4d] {\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".contacts-list[data-v-7d33fe4d] {\n  transition: all 0.3s ease;\n  flex: 2;\n  max-height: 600px;\n  /*  */\n  position: absolute;\n  z-index: 1;\n  background-color: #FFF;\n  width: 100%;\n  height: 100%;\n}\n.contacts-list ul[data-v-7d33fe4d] {\n  list-style-type: none;\n  padding-left: 0;\n  margin-bottom: 0;\n}\n.contacts-list ul li[data-v-7d33fe4d] {\n  display: flex;\n  padding: 2px;\n  border-bottom: 1px solid #ddd;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-7d33fe4d] {\n  background-color: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-7d33fe4d] {\n  background-color: #82e0e8;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  justify-content: center;\n  align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul > li[data-v-7d33fe4d]:last-of-type {\n  border-bottom: none;\n}\n.contacts-list ul .avatar[data-v-7d33fe4d] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\n.contacts-list ul .avatar img[data-v-7d33fe4d] {\n  width: 35px;\n  border-radius: 50px;\n  margin: 0 auto;\n}\n.contacts-list ul .contact[data-v-7d33fe4d] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.contacts-list ul .contact p[data-v-7d33fe4d] {\n  margin: 0;\n}\n.contacts-list ul .contact p.name[data-v-7d33fe4d] {\n  font-weight: bold;\n}\n@-webkit-keyframes swing-out-top-bck-data-v-7d33fe4d {\n0% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n100% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n}\n@keyframes swing-out-top-bck-data-v-7d33fe4d {\n0% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n100% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n}\n.swing-out-top-bck[data-v-7d33fe4d] {\n  -webkit-animation: swing-out-top-bck-data-v-7d33fe4d 0.45s cubic-bezier(0.6, -0.28, 0.735, 0.045) both;\n  animation: swing-out-top-bck-data-v-7d33fe4d 0.45s cubic-bezier(0.6, -0.28, 0.735, 0.045) both;\n}\n.swing-in-top-fwd[data-v-7d33fe4d] {\n  -webkit-animation: swing-in-top-fwd-data-v-7d33fe4d 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;\n  animation: swing-in-top-fwd-data-v-7d33fe4d 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;\n}\n@-webkit-keyframes swing-in-top-fwd-data-v-7d33fe4d {\n0% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n100% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n}\n@keyframes swing-in-top-fwd-data-v-7d33fe4d {\n0% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n100% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n}", ""]);
 
 // exports
 
@@ -6690,7 +6740,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".conversation[data-v-0554ee3f] {\n  flex: 5;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.conversation h1[data-v-0554ee3f] {\n  font-size: 20px;\n  margin: 0;\n  padding: 10px;\n  border-bottom: 1px dashed lightgray;\n}", ""]);
+exports.push([module.i, ".conversation[data-v-0554ee3f] {\n  flex: 5;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.conversation h1[data-v-0554ee3f] {\n  margin: 0;\n  border-bottom: 1px dashed lightgray;\n  display: flex;\n}\n.conversation h1 > div[data-v-0554ee3f] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding: 10px 0;\n}\n.conversation h1 > div[data-v-0554ee3f]:nth-of-type(1),\n.conversation h1 > div[data-v-0554ee3f]:nth-of-type(3) {\n  width: 40px;\n  font-size: 22px;\n  cursor: pointer;\n}\n.conversation h1 > div[data-v-0554ee3f]:nth-of-type(2) {\n  width: 220px;\n  font-size: 15px;\n}", ""]);
 
 // exports
 
@@ -6709,7 +6759,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "textarea[data-v-8892cb8a] {\n  width: 96%;\n  margin: 10px;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n  padding: 6px;\n}", ""]);
+exports.push([module.i, ".composer[data-v-8892cb8a] {\n  padding: 5px;\n}\n.composer textarea[data-v-8892cb8a] {\n  width: 100%;\n  height: 100%;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n}", ""]);
 
 // exports
 
@@ -6728,7 +6778,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".feed[data-v-26736974] {\n  height: 100%;\n  background-color: #f3f3f3;\n  max-height: 470px;\n  overflow: scroll;\n}\n.feed ul[data-v-26736974] {\n  list-style-type: none;\n  padding: 5px;\n}\n.feed ul li.message[data-v-26736974] {\n  margin: 10px 0;\n  width: 100%;\n}\n.feed ul li.message .text[data-v-26736974] {\n  max-width: 200px;\n  border-radius: 5px;\n  padding: 12px;\n  display: inline-block;\n}\n.feed ul li.message.recieved[data-v-26736974] {\n  text-align: right;\n}\n.feed ul li.message.recieved .text[data-v-26736974] {\n  background-color: #b2b2b2;\n}\n.feed ul li.message.sent[data-v-26736974] {\n  text-align: left;\n}\n.feed ul li.message.sent .text[data-v-26736974] {\n  background-color: #81c4f9;\n}", ""]);
+exports.push([module.i, ".feed[data-v-26736974] {\n  height: 100%;\n  background-color: #f3f3f3;\n  overflow-y: hidden;\n  position: relative;\n}\n.feed ul[data-v-26736974] {\n  list-style-type: none;\n  padding: 5px;\n  margin-bottom: 0;\n}\n.feed ul li.message[data-v-26736974] {\n  margin: 10px 0;\n  width: 100%;\n}\n.feed ul li.message .text[data-v-26736974] {\n  max-width: 200px;\n  border-radius: 5px;\n  padding: 12px;\n  display: inline-block;\n}\n.feed ul li.message.recieved[data-v-26736974] {\n  text-align: right;\n}\n.feed ul li.message.recieved .text[data-v-26736974] {\n  background-color: #b2b2b2;\n}\n.feed ul li.message.sent[data-v-26736974] {\n  text-align: left;\n}\n.feed ul li.message.sent .text[data-v-26736974] {\n  background-color: #81c4f9;\n}", ""]);
 
 // exports
 
@@ -44724,7 +44774,77 @@ var render = function() {
     { staticClass: "conversation" },
     [
       _c("h1", [
-        _vm._v(_vm._s(_vm.contact ? _vm.contact.name : "Select a Contact"))
+        _c(
+          "div",
+          {
+            on: {
+              click: function($event) {
+                return _vm.openContactList()
+              }
+            }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "bi bi-list",
+                attrs: {
+                  width: "1em",
+                  height: "1em",
+                  viewBox: "0 0 16 16",
+                  fill: "currentColor",
+                  xmlns: "http://www.w3.org/2000/svg"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                  }
+                })
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v(_vm._s(_vm.contact ? _vm.contact.name : "Select a Contact"))
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "svg",
+            {
+              staticClass: "bi bi-x",
+              attrs: {
+                width: "1em",
+                height: "1em",
+                viewBox: "0 0 16 16",
+                fill: "currentColor",
+                xmlns: "http://www.w3.org/2000/svg"
+              }
+            },
+            [
+              _c("path", {
+                attrs: {
+                  "fill-rule": "evenodd",
+                  d:
+                    "M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"
+                }
+              }),
+              _vm._v(" "),
+              _c("path", {
+                attrs: {
+                  "fill-rule": "evenodd",
+                  d:
+                    "M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"
+                }
+              })
+            ]
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("MessagesFeed", {

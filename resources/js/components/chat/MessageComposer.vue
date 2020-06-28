@@ -29,12 +29,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-textarea {
-    width: 96%;
-    margin: 10px;
-    resize: none;
-    border-radius: 3px;
-    border: 1px solid lightgray;
-    padding: 6px;
+.composer {
+    padding: 5px;
+
+    textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        border-radius: 3px;
+        border: 1px solid lightgray;
+    }
 }
 </style>

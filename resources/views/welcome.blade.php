@@ -108,12 +108,7 @@ stopwaitsecs=3600 --}}
 
     <script src='{{asset("js/app.js")}}' type='text/javascript'></script>
 
-    <script>
-        Echo.channel('home')
-            .listen('NewMessage', (e) => {
-                console.log(e.message);
-            });
-    </script>
+    
 
 </body>
 

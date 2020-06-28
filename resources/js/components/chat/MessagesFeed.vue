@@ -17,6 +17,8 @@
 </template>
 
 <script>
+
+//window.contact_list = new PerfectScrollbar('.contacts-list');
 export default {
     props: {
         contact: {
@@ -29,6 +31,8 @@ export default {
     },
     methods: {
         scrollToBottom() {
+            window.chat_feed.update();
+            this.$refs.feed.scrollTop = 0;
             setTimeout(() => {
                 this.$refs.feed.scrollTop =
                     this.$refs.feed.scrollHeight - this.$refs.feed.clientHeight;
@@ -42,7 +46,10 @@ export default {
         messages(messages) {
             this.scrollToBottom();
         }
-    }
+    },
+    mounted(){
+        window.chat_feed = new PerfectScrollbar('.feed');
+    },
 };
 </script>
 
@@ -50,12 +57,13 @@ export default {
 .feed {
     height: 100%;
     background-color: rgb(243, 243, 243);
-    max-height: 470px;
-    overflow: scroll;
+    overflow-y: hidden;
+    position: relative;
 
     ul {
         list-style-type: none;
         padding: 5px;
+        margin-bottom: 0;
 
         li {
             &.message {
