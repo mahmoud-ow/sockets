@@ -1942,6 +1942,8 @@ __webpack_require__.r(__webpack_exports__);
 
     //console.log(this.user);
     Echo["private"]("messages.".concat(this.user.id)).listen("NewMessage", function (e) {
+      alert('ok');
+
       _this.handleIncoming(e.message);
     });
     axios.get("/contacts").then(function (response) {

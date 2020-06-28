@@ -117,11 +117,7 @@
                 console.log(e.message);
             }); */
            
-            Echo.private(`home`)
-            .listen("NewMessage", (e) => {
-                console.log(e.message);
-            });
-
+           
         });/* /ready() */
 
     </script>
