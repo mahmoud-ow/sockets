@@ -24,6 +24,8 @@ class ContactsController extends Controller
         foreach( $to_ids as $to_user ){
             $valid_users[] = $to_user->to;
         }
+
+        $valid_users = array_unique($valid_users);
         
         return $valid_users;
         return $from_ids .'<hr />' . $to_ids;
