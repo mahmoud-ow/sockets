@@ -45,8 +45,12 @@ class ContactsController extends Controller
 
             $contact->unread = $contactUnread ? $contactUnread->messages_count : 0;
 
-            $valid_contact = $conversations->where('from', $contact->id)->orWhere('to', $contact->id)->first();
+            $valid_contact = $conversations->where('from', $contact->id)->first();
             
+            /* 
+            ->orWhere('to', $contact->id)
+             */
+
             if( $valid_contact ){
                 return $contact;
             }
