@@ -14,8 +14,11 @@ class ContactsController extends Controller
     
     public function get(Request $request){
         
+        $from_ids = Message::where('to', auth()->id() )->groupBy('from')->get();
+
+        return $from_ids;
+
         // get all users except the auth()
-      
         $contacts = User::where('id', '<>', auth()->user()->id)->get();
 
         $unreadIds = Message::select(DB::raw('`from` as sender_id, count(`from`) as messages_count'))
