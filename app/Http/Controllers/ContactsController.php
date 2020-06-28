@@ -14,7 +14,11 @@ class ContactsController extends Controller
     
     public function get(Request $request){
         
-        $from_ids = Message::where('to', auth()->id() )->groupBy('from')->get();
+        $from_ids = DB::table('messages')->select('*')
+        ->where('to', auth()->id() )
+        ->groupBy('from')
+        ->get();
+        
 
         return $from_ids;
 
