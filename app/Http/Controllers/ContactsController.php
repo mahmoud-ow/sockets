@@ -26,8 +26,8 @@ class ContactsController extends Controller
         }
 
         $valid_users = array_unique($valid_users);
-        
-        return $valid_users;
+        print_r( $valid_users );
+        return ;
         return $from_ids .'<hr />' . $to_ids;
 
         // get all users except the auth()
