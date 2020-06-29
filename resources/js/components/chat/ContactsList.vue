@@ -51,7 +51,7 @@ export default {
                     if (contact == this.selected) {
                         //return Infinity;
                     }
-                    //return contact.unread;
+                    return contact.unread;
                 }
             ]);
         }

@@ -2048,8 +2048,9 @@ __webpack_require__.r(__webpack_exports__);
 
       return _.sortBy(this.contacts, [function (contact) {
         if (contact == _this.selected) {//return Infinity;
-        } //return contact.unread;
+        }
 
+        return contact.unread;
       }]);
     }
   },
