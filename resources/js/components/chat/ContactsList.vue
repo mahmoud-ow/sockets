@@ -110,7 +110,7 @@ export default {
             }
         }
 
-        > li:last-of-type{
+        > li:last-of-type ,  > li:nth-of-type(5){
             border-bottom: none;
         }
 
