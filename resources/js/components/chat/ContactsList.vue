@@ -53,7 +53,7 @@ export default {
                     }
                     return contact.unread;
                 }
-            ]).reverse();
+            ]);
         }
     },
     mounted(){
