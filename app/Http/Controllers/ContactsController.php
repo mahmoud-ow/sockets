@@ -36,7 +36,7 @@ class ContactsController extends Controller
             $contact_list[] = $value;
         }
 
-        return $contact_list;
+        return $valid_users;
 
 
 
