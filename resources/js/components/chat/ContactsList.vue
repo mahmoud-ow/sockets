@@ -2,7 +2,7 @@
     <div class="contacts-list">
         <ul>
             <li
-                v-for="contact in contacts"
+                v-for="contact in sortedContacts"
                 :key="contact.id"
                 @click="selectContact(contact)"
                 :class="{ selected: contact == selected }"
