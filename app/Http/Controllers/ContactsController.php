@@ -18,7 +18,12 @@ class ContactsController extends Controller
         $from_ids = Message::selectRaw(' ANY_VALUE(`id`) as rowid, `to` , `from` ')->where( 'to' , auth()->id() )->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
         $to_ids = Message::selectRaw(' ANY_VALUE(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
 
-        return $from_ids ."<hr />". $to_ids;
+
+        $merged = $from_ids->merge($to_ids);
+
+
+        return $merged;
+        // return $from_ids ."<hr />". $to_ids;
 
         
         $valid_users = array();
