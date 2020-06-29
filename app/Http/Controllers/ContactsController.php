@@ -49,6 +49,8 @@ class ContactsController extends Controller
             $contact_list[] = $value;
         }
 
+        $contact_list = array_unique($contact_list);
+
         return $contact_list;
 
 
