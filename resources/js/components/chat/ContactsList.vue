@@ -55,7 +55,10 @@ export default {
                 }
             ]).reverse();
         }
-    }
+    },
+    mounted(){
+        window.contact_list = new PerfectScrollbar('.contacts-list');
+    },
 };
 </script>
 
