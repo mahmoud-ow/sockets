@@ -114,6 +114,10 @@ export default {
             border-bottom: none;
         }
 
+        > li:nth-of-type(1), > li:nth-of-type(2), > li:nth-of-type(3), > li:nth-of-type(4), > li:nth-of-type(5){
+            border-bottom: 1px solid #ddd !important;
+        }
+
         .avatar {
             flex: 1;
             display: flex;
