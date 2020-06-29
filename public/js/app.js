@@ -2048,9 +2048,8 @@ __webpack_require__.r(__webpack_exports__);
 
       return _.sortBy(this.contacts, [function (contact) {
         if (contact == _this.selected) {//return Infinity;
-        }
+        } //return contact.unread;
 
-        return contact.unread;
       }]);
     }
   },
@@ -44713,7 +44712,7 @@ var render = function() {
   return _c("div", { staticClass: "contacts-list" }, [
     _c(
       "ul",
-      _vm._l(_vm.sortedContacts, function(contact) {
+      _vm._l(_vm.contact, function(contact) {
         return _c(
           "li",
           {
