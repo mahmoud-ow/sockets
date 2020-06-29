@@ -20,38 +20,23 @@ class ContactsController extends Controller
         
         $to_ids = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
 
-
-        //$merged = $to_ids->merge($from_ids);
-
-
-        //return $merged;
-        //return $from_ids ."<hr />". $to_ids;
-
         
         $valid_users = array();
         foreach( $to_ids as $to_user ){
             $valid_users[$to_user->rowid] = $to_user->to;
         }
-
-        
         foreach( $from_ids as $from_user ){
             $valid_users[$from_user->rowid] = $from_user->from;
         }
 
-        
-        //$valid_users = array_unique($valid_users);
-        //$valid_users = array_values($valid_users);
-        
-        //return  $valid_users;
 
         $contact_list = [];
         foreach($valid_users as $key => $value ){
             $contact_list[] = $value;
         }
-
         $contact_list = array_unique($contact_list);
 
-        return $contact_list;
+
 
 
         // get all users except the auth()
