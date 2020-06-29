@@ -33,7 +33,7 @@ class ContactsController extends Controller
         $arrange = [];
 
         foreach( $valid_users as $user ){
-            if( in_array($user, $arrange) ){
+            if( !in_array($user, $arrange) ){
                echo $user ."<hr>";
             }
         }
