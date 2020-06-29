@@ -40,7 +40,7 @@ class ContactsController extends Controller
             }
         }
 
-        return $fixedIds;
+        //return $fixedIds;
 
         //return $from_ids ."<hr/>". $to_ids;
 
