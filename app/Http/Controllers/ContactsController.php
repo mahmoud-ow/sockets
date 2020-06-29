@@ -29,7 +29,9 @@ class ContactsController extends Controller
             $valid_users[$from_user->rowid] = $from_user->from;
         }
 
-    
+        
+
+        return array_unique($valid_users,SORT_REGULAR);
 
         $contact_list = [];
         foreach($valid_users as $key => $value ){
@@ -38,7 +40,7 @@ class ContactsController extends Controller
 
         //array_unique( $contact_list , SORT_REGULAR);;
 
-        $contact_list = array_unique($contact_list);
+        //$contact_list = array_unique($contact_list);
 
         return $contact_list;
 
