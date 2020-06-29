@@ -30,25 +30,22 @@ class ContactsController extends Controller
         }
         $valid_users = array_values($valid_users);
         $valid_users = array_reverse($valid_users);       
-        $arrange = [];
+        $contact_list = [];
 
         foreach( $valid_users as $user ){
-            if( !in_array($user, $arrange) ){
-                $arrange[] = $user;
-                echo $user ."<hr>";
+            if( !in_array($user, $contact_list) ){
+                $contact_list[] = $user;
             }
         }
 
-        return;
-        return $arrange;
 
-        return array_unique(array_reverse($valid_users), SORT_REGULAR);
+     
 
 
-        $contact_list = [];
+        /* $contact_list = [];
         foreach($valid_users as $key => $value ){
             $contact_list[] = $value;
-        }
+        } */
 
         //array_unique( $contact_list , SORT_REGULAR);;
 
@@ -59,7 +56,7 @@ class ContactsController extends Controller
 
 
         // get all users except the auth()
-        $contacts = User::where('id', '<>', auth()->user()->id)->whereIn('id', $valid_users)->get();
+        $contacts = User::where('id', '<>', auth()->user()->id)->whereIn('id', $contact_list)->get();
 
 
 
