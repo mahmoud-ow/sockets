@@ -39,13 +39,14 @@ class ContactsController extends Controller
 
 
 
-
+        $valid_users = array_reverse($valid_users);
         $contact_list = [];
         foreach($valid_users as $key => $value ){
             if( !in_array( $value, $contact_list) ){
                 $contact_list[] = $value;
             }
         }
+        $valid_users = array_reverse($valid_users);
 
 
         return $contact_list;
