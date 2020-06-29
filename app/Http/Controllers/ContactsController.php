@@ -43,7 +43,7 @@ class ContactsController extends Controller
         //$contact_list = array_unique($contact_list);
 
         
-        return array_unique(array_reverse($contact_list),SORT_REGULAR);
+        return array_unique(array_reverse($valid_users),SORT_REGULAR);
 
 
         // get all users except the auth()
