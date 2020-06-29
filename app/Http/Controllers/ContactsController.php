@@ -44,7 +44,7 @@ class ContactsController extends Controller
 
         //return $from_ids ."<hr/>". $to_ids;
 
-        
+        /* 
         $valid_users = array();
         foreach( $to_ids as $to_user ){
             $valid_users[$to_user->rowid] = $to_user->to;
@@ -82,7 +82,7 @@ class ContactsController extends Controller
 
         return $contact_list;
 
-
+ */
 
 
   
@@ -90,17 +90,18 @@ class ContactsController extends Controller
 
 
         // get all users except the auth()
-        $contacts = User::where('id', '<>', auth()->user()->id)->whereIn('id', $contact_list)->get();
+        $contacts = User::where('id', '<>', auth()->user()->id)->whereIn('id', $fixedIds)->get();
 
 
 
-        $ids = collect($contact_list);
+        $ids = collect($fixedIds);
 
         $contacts = $ids->map(function($id) use($contacts) {
             return $contacts->where('id', $id)->first();
         });
 
 
+        
 
 
         $unreadIds = Message::select(DB::raw('`from` as sender_id, count(`from`) as messages_count'))
