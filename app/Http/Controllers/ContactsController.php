@@ -36,7 +36,7 @@ class ContactsController extends Controller
             $contact_list[] = $value;
         }
 
-        return  array_unique(array_reverse($valid_users));
+        return  array_reverse($valid_users) . '<hr>' . $valid_users;
 
 
 
