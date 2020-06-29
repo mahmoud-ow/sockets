@@ -30,14 +30,14 @@ class ContactsController extends Controller
         }
 
         return $valid_users;
-        
+
         $contact_list = [];
         foreach($valid_users as $key => $value ){
             $contact_list[] = $value;
         }
 
 
-        return $contact_list;
+        return array_unique( $contact_list , SORT_REGULAR);;
 
         $contact_list = array_unique($contact_list);
 
