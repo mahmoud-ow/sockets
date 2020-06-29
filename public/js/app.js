@@ -2051,7 +2051,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         return contact.unread;
-      }]);
+      }]).reverse();
     }
   },
   mounted: function mounted() {
