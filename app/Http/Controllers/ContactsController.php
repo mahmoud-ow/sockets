@@ -42,33 +42,18 @@ class ContactsController extends Controller
 
         $contact_list = [];
         foreach($valid_users as $key => $value ){
-            $contact_list[] = $value;
+            if( !in_array( $value, $contact_list) ){
+                $contact_list[] = $value;
+            }
         }
 
 
+        return $contact_list;
 
 
-        /* $valid_users = array_values($valid_users);
-        $valid_users = array_reverse($valid_users);       
-        $contact_list = [];
-
-        foreach( $valid_users as $user ){
-            if( !in_array($user, $contact_list) ){
-                $contact_list[] = $user;
-            }
-        } */
 
 
-     
-
-
-        
-
-        //array_unique( $contact_list , SORT_REGULAR);;
-
-        //$contact_list = array_unique($contact_list);
-
-        
+  
         
 
 
