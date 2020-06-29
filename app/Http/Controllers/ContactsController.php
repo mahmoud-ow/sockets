@@ -27,6 +27,7 @@ class ContactsController extends Controller
         $valid_users = array_unique($valid_users);
 
 
+        return $valid_users;
 
 
         // get all users except the auth()
