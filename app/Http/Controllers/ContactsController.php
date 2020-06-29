@@ -29,7 +29,7 @@ class ContactsController extends Controller
             $valid_users[$from_user->rowid] = $from_user->from;
         }
         $valid_users = array_values($valid_users);
-        
+        $valid_users = array_reverse($valid_users);
         $arrange = [];
 
         foreach( $valid_users as $user ){
