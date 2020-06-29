@@ -46,7 +46,7 @@ class ContactsController extends Controller
                 $contact_list[] = $value;
             }
         }
-        $valid_users = array_reverse($valid_users);
+        $contact_list = array_reverse($contact_list);
 
 
         return $contact_list;
