@@ -44712,7 +44712,7 @@ var render = function() {
   return _c("div", { staticClass: "contacts-list" }, [
     _c(
       "ul",
-      _vm._l(_vm.contact, function(contact) {
+      _vm._l(_vm.contacts, function(contact) {
         return _c(
           "li",
           {
