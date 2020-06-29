@@ -2,7 +2,7 @@
     <div class="contacts-list">
         <ul>
             <li
-                v-for="contact in sortedContacts"
+                v-for="contact in contacts"
                 :key="contact.id"
                 @click="selectContact(contact)"
                 :class="{ selected: contact == selected }"
@@ -53,7 +53,7 @@ export default {
                     }
                     return contact.unread;
                 }
-            ]).reverse();
+            ]);
         }
     },
     mounted(){
