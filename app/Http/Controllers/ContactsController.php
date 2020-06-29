@@ -17,7 +17,10 @@ class ContactsController extends Controller
 
         $from_ids = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'to' , auth()->id() )->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
         $to_ids = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
+        
+        $convs = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orWhere('to', auth()->id())->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
 
+        return $convs;
         
 
         //return $from_ids ."<hr/>". $to_ids;
@@ -46,7 +49,7 @@ class ContactsController extends Controller
         }
 
 
-        return array_reverse(array_unique(array_reverse($valid_users)));;
+        
         return $newArray;
 
         $contact_list = [];
