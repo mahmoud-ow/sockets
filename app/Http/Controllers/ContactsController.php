@@ -28,8 +28,17 @@ class ContactsController extends Controller
         foreach( $from_ids as $from_user ){
             $valid_users[$from_user->rowid] = $from_user->from;
         }
+        $valid_users = array_values($valid_users);
+        
+        $arrange = [];
 
-        return array_unique($valid_users);
+        foreach( $valid_users as $user ){
+            if( in_array($user, $arrange) ){
+                $arrange[] = $user;
+            }
+        }
+        return $arrange;
+
         return array_unique(array_reverse($valid_users), SORT_REGULAR);
 
 
