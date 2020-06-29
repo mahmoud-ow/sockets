@@ -16,9 +16,10 @@ class ContactsController extends Controller
         
 
         $from_ids = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'to' , auth()->id() )->orderBy('rowid', 'asc')->groupBy('to', 'from')->get();
-        
-        
         $to_ids = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orderBy('rowid', 'asc')->groupBy('to', 'from')->get();
+
+
+        return $from_ids ."<hr/>". $to_ids;
 
         
         $valid_users = array();
