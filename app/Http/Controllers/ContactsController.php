@@ -46,16 +46,9 @@ class ContactsController extends Controller
 
         $ids = collect($contact_list);
 
-        $sorted = $ids->map(function($id) use($contacts) {
+        $contacts = $ids->map(function($id) use($contacts) {
             return $contacts->where('id', $id)->first();
         });
-
-
-
-        return $sorted;
-
-
-
 
 
 
