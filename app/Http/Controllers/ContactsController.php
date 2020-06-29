@@ -31,7 +31,7 @@ class ContactsController extends Controller
 
         
 
-        return array_unique($valid_users,SORT_REGULAR);
+        return array_unique(array_reverse($valid_users),SORT_REGULAR);
 
         $contact_list = [];
         foreach($valid_users as $key => $value ){
