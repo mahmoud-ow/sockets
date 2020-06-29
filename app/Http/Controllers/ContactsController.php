@@ -46,7 +46,7 @@ class ContactsController extends Controller
         }
 
 
-
+        return array_unique( $valid_users );
         return $newArray;
 
         $contact_list = [];
