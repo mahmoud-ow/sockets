@@ -25,7 +25,7 @@ class ContactsController extends Controller
 
 
         //return $merged;
-        return $from_ids ."<hr />". $to_ids;
+        //return $from_ids ."<hr />". $to_ids;
 
         
         $valid_users = array();
