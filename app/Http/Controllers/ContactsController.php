@@ -21,16 +21,16 @@ class ContactsController extends Controller
         //return $from_ids ."<hr />". $to_ids;
 
         
-
+        $valid_users = array();
         foreach( $to_ids as $to_user ){
             $valid_users[$to_user->rowid] = $to_user->to;
         }
 
-        $valid_users = array();
+        
         foreach( $from_ids as $from_user ){
             $valid_users[$from_user->rowid] = $from_user->from;
         }
-        
+
         //$valid_users = array_unique($valid_users);
 
 
