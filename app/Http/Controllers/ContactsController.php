@@ -34,6 +34,10 @@ class ContactsController extends Controller
         foreach($valid_users as $key => $value ){
             $contact_list[] = $value;
         }
+
+
+        return $contact_list;
+        
         $contact_list = array_unique($contact_list);
 
 
