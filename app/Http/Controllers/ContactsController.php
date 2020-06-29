@@ -15,10 +15,10 @@ class ContactsController extends Controller
     public function get(Request $request){
         
 
-        $from_ids = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'to' , auth()->id() )->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
+        $from_ids = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'to' , auth()->id() )->orderBy('rowid', 'asc')->groupBy('to', 'from')->get();
         
         
-        $to_ids = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
+        $to_ids = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orderBy('rowid', 'asc')->groupBy('to', 'from')->get();
 
         
         $valid_users = array();
@@ -29,7 +29,7 @@ class ContactsController extends Controller
             $valid_users[$from_user->rowid] = $from_user->from;
         }
         $valid_users = array_values($valid_users);
-        $valid_users = array_reverse($valid_users);
+        
         $arrange = [];
 
         foreach( $valid_users as $user ){
