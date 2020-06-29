@@ -20,8 +20,19 @@ class ContactsController extends Controller
         
         $convs = Message::selectRaw(' MAX(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orWhere('to', auth()->id())->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
 
-        return $convs;
         
+        $ids = [];
+
+        foreach($convs as $conv){
+            if($conv->to != auth()->id()){
+                $ids[] = $conv->to;        
+            } else {
+                $ids[] = $conv->from;        
+            }
+        }
+        
+        
+        return $ids;
 
         //return $from_ids ."<hr/>". $to_ids;
 
