@@ -32,8 +32,22 @@ class ContactsController extends Controller
         }
 
 
+        $arrInd = [];
 
-        return $valid_users;
+        $newArray = array();
+
+        foreach( $valid_users as $key => $value ){
+
+            if( !in_array( $value, $arrInd) ){
+                $arrInd[] = $value;
+                $newArray[$key] = $value;
+            }
+
+        }
+
+
+
+        return $newArray;
 
         $contact_list = [];
         foreach($valid_users as $key => $value ){
