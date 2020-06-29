@@ -31,15 +31,20 @@ class ContactsController extends Controller
             $valid_users[$from_user->rowid] = $from_user->from;
         }
 
+
+        return $valid_users;
+
+
+
+
+
+
+
         $contact_list = [];
         foreach($valid_users as $key => $value ){
             $contact_list[] = $value;
         }
 
-        print_r(array_reverse($valid_users));
-        print_r($valid_users);
-
-        return ;
 
 
 
