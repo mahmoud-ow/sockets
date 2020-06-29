@@ -32,9 +32,14 @@ class ContactsController extends Controller
         }
 
         //$valid_users = array_unique($valid_users);
-        $valid_users = array_values($valid_users);
+        //$valid_users = array_values($valid_users);
 
-        return $valid_users;
+        $contact_list = [];
+        foreach($valid_users as $key => $value ){
+            $contact_list[] = $value;
+        }
+
+        return $contact_list;
 
 
         // get all users except the auth()
