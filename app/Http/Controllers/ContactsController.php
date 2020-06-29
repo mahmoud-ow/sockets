@@ -32,7 +32,7 @@ class ContactsController extends Controller
         }
 
 
-        return $valid_users;
+  
 
 
 
