@@ -36,13 +36,11 @@ class ContactsController extends Controller
             $contact_list[] = $value;
         }
 
-
-        return array_map("unserialize", array_unique(array_map("serialize", $contact_list)));
         //array_unique( $contact_list , SORT_REGULAR);;
 
         $contact_list = array_unique($contact_list);
 
-
+        return $contact_list;
 
 
         // get all users except the auth()
