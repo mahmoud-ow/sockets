@@ -37,7 +37,8 @@ class ContactsController extends Controller
         }
 
 
-        return array_unique( $contact_list , SORT_REGULAR);;
+        return array_map("unserialize", array_unique(array_map("serialize", $contact_list)));
+        //array_unique( $contact_list , SORT_REGULAR);;
 
         $contact_list = array_unique($contact_list);
 
