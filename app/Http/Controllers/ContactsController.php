@@ -19,7 +19,7 @@ class ContactsController extends Controller
         $to_ids = Message::selectRaw(' ANY_VALUE(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orderBy('rowid', 'desc')->groupBy('to', 'from')->get();
 
 
-        $merged = $from_ids->merge($to_ids);
+        $merged = $to_ids->merge($from_ids);
 
 
         return $merged;
