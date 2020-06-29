@@ -15,8 +15,8 @@ class ContactsController extends Controller
     public function get(Request $request){
         
 
-        $from_ids = Message::selectRaw(' ANY_VALUE(`id`) as rowid, `to` , `from` ')->where( 'to' , auth()->id() )->orderBy('rowid', 'asc')->groupBy('to', 'from')->get();
-        $to_ids = Message::selectRaw(' ANY_VALUE(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->orderBy('rowid', 'asc')->groupBy('to', 'from')->get();
+        $from_ids = Message::selectRaw(' ANY_VALUE(`id`) as rowid, `to` , `from` ')->where( 'to' , auth()->id() )->latest()->groupBy('to', 'from')->get();
+        $to_ids = Message::selectRaw(' ANY_VALUE(`id`) as rowid, `to` , `from` ')->where( 'from' , auth()->id() )->latest()->groupBy('to', 'from')->get();
 
         //return $from_ids ."<hr />". $to_ids;
 
