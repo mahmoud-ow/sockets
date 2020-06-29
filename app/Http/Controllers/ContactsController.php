@@ -31,8 +31,16 @@ class ContactsController extends Controller
             }
         }
         
+
+        $fixedIds = [];
         
-        return $ids;
+        foreach( $ids as $id ){
+            if( !in_array( $id, $fixedIds ) ){
+                $fixedIds[] = $id;
+            }
+        }
+
+        return $fixedIds;
 
         //return $from_ids ."<hr/>". $to_ids;
 
