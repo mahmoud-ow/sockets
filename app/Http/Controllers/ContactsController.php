@@ -34,9 +34,11 @@ class ContactsController extends Controller
 
         foreach( $valid_users as $user ){
             if( in_array($user, $arrange) ){
-                $arrange[] = $user;
+               echo $user ."<hr>";
             }
         }
+
+        return;
         return $arrange;
 
         return array_unique(array_reverse($valid_users), SORT_REGULAR);
