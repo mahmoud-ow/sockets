@@ -23,17 +23,18 @@ class ContactsController extends Controller
         //return $from_ids ."<hr/>". $to_ids;
 
         
-        $valid_users = array();
+        $valid_users1 = array();
+        $valid_users2 = array();
         foreach( $to_ids as $to_user ){
-            $valid_users[$to_user->rowid] = $to_user->to;
+            $valid_users1[$to_user->rowid] = $to_user->to;
         }
         foreach( $from_ids as $from_user ){
-            $valid_users[$from_user->rowid] = $from_user->from;
+            $valid_users2[$from_user->rowid] = $from_user->from;
         }
 
-
+        $merg = array_merge($valid_users1, $valid_users2);
   
-
+        return $merg ;
 
 
         $valid_users = array_reverse($valid_users);
