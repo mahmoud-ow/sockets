@@ -12,4 +12,13 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/pages/auth_pages.scss', 'public/css/pages')
+    
+    
+    // dashboards ( admin )
+    .js('resources/js/dashboards/admin/settings.js', 'public/js/dashboards/admin')
+    .sass('resources/sass/dashboards/admin/settings.scss', 'public/css/dashboards/admin')
+    
+    .options({processCssUrls: false});

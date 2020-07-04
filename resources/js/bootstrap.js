@@ -1,33 +1,22 @@
 window._ = require('lodash');
 
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
-
     require('bootstrap');
-} catch (e) {}
+} catch (e) { }
 
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
+
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
+
+
+
+window.Swal = require('sweetalert2')
+
+
 
 import Echo from 'laravel-echo';
 
@@ -45,6 +34,7 @@ window.Echo = new Echo({
     encrypted: true,
     enabledTransports: ['ws', 'wss'],
 });
+
 
 
 
@@ -75,3 +65,48 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
  */
+
+
+
+
+
+
+
+
+
+
+
+
+window.dt_lang = {
+
+    // arabic
+    'ar': {
+
+        "sEmptyTable": "ليست هناك بيانات متاحة في الجدول",
+        "sLoadingRecords": "جارٍ التحميل...",
+        "sProcessing": "جارٍ التحميل...",
+        "sLengthMenu": "أظهر _MENU_ مدخلات",
+        "sZeroRecords": "لم يعثر على أية سجلات",
+        "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+        "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+        "sInfoPostFix": "",
+        "sSearch": "ابحث:",
+        "sUrl": "",
+        "oPaginate": {
+            "sFirst": "الأول",
+            "sPrevious": "السابق",
+            "sNext": "التالي",
+            "sLast": "الأخير"
+        },
+        "oAria": {
+            "sSortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+            "sSortDescending": ": تفعيل لترتيب العمود تنازلياً"
+        }
+    },
+
+
+
+    'en': '',
+
+};

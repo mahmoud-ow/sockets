@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> --}}
 
     <!-- Styles -->
     <style>
@@ -87,6 +87,11 @@
         <div class="content">
             <div class="title m-b-md">
                 <p>
+                    <form action="/users/logout" method="POST">
+                        @csrf
+                        <button>out</button>
+                    </form>
+                    {{App::getLocale()}}
                     <h1>ASWAQ</h1>
                 </p>
             </div>

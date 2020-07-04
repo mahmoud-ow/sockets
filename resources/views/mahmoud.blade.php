@@ -6,12 +6,3 @@ autorestart=true
 user=root
 
 
-
-20
-27
-31
-30
-22
-30
-18
-21

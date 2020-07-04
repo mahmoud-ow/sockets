@@ -1,73 +1,127 @@
-@extends('layouts.app')
+@extends('layouts.app_pages')
+
+
+
+@section('header')
+@parent
+<link href='{{asset($asset."/css/pages/auth_pages.css?ver=".$ver)}}' rel='stylesheet' type='text/css'>
+<title>{{__('auth.user_login')}}</title>
+@endsection
+
+
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<!-- SECTION HEADLINE -->
+<div class="section-headline-wrap">
+    <div class="section-headline">
+        <h2>{{__('auth.user_login')}}</h2>
+        <p>{{__('auth.home')}}<span class="separator">/</span><span class="current-section">{{__('auth.login')}}</span>
+        </p>
     </div>
 </div>
+<!-- /SECTION HEADLINE -->
+
+<div id="content-wrapper">
+
+    <div>
+
+
+        <!-- FORM POPUP -->
+        <div class="form-popup">
+            
+            
+
+            <!-- FORM POPUP CONTENT -->
+            <div class="form-popup-content">
+
+
+                @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                <div class="form-error">{{$error}}</div>
+                <?php break; ?>
+                @endforeach
+                @endif
+
+                @if (\Session::has('verification_success'))
+                <div class="form-success">{!! \Session::get('verification_success') !!}</div>
+                @endif
+
+               
+                <form id="register-form" method="POST" action="{{ route('account.login') }}">
+                    <div class="form-anchor"><a href="{{url('/users/register')}}">{{__('auth.register_an_account')}}</a></div>
+                    @csrf
+
+                    <label for="email" class="rl-label required">{{__('auth.email')}}</label>
+                    <input type="email" id="email" name="email" class="" placeholder="{{__('auth.email_placeholder')}}"
+                        value="{{old('email')}}">
+
+
+                    <label for="password" class="rl-label required">{{__('auth.password')}}</label>
+                    <input type="password" id="password" name="password"
+                        placeholder="{{__('auth.password_placeholder')}}">
+                    <!-- CHECKBOX -->
+                    <input type="checkbox" id="remember" name="remember" checked>
+                    <label for="remember" class="label-check">
+                        <span class="checkbox primary primary"><span></span></span>
+                        {{__('auth.remeber_auth')}}
+                    </label>
+                    <!-- /CHECKBOX -->
+                    <p>{{__('auth.forget_password')}} <a href="{{ url('/users/login/forget-password') }}" class="primary">{{__('auth.click_here')}}</a></p>
+
+
+                    <button class="button mid dark">{{__('auth.login')}} <span class="primary">{{__('auth.now')}}
+                            !</span></button>
+
+                    <!-- LINE SEPARATOR -->
+                    <hr class="line-separator double">
+                    <!-- /LINE SEPARATOR -->
+                    <div id="login-social">
+                        <a href="#" class="button mid fb half login-link">{{__('auth.login_facebook')}}</a>
+                        <a href="#" class="button mid twt half login-link">{{__('auth.login_twitter')}}</a>
+                    </div>
+
+                </form>
+            </div>
+            <!-- /FORM POPUP CONTENT -->
+        </div>
+        <!-- /FORM POPUP -->
+
+
+    </div>
+
+
+
+
+    <div class="login-icon"></div>
+
+
+
+
+</div>
+<!-- /#content-wrapper -->
+
+
+@endsection
+
+
+
+
+@section('footer')
+@parent
+
+
+<!-- Tweet -->
+<script src="/js/vendor/twitter/jquery.tweet.min.js"></script>
+<!-- Side Menu -->
+<script src="/js/side-menu.js"></script>
+<!-- User Quickview Dropdown -->
+<script src="/js/user-board.js"></script>
+<!-- Footer -->
+<script src="/js/footer.js"></script>
+
+
+
+
+
 @endsection

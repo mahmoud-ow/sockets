@@ -1,15 +1,20 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+/* @import url('https://fonts.googleapis.com/css?family=Nunito'); */
 
 // Variables
-@import 'variables';
+/* @import 'variables'; */
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+/* @import '~bootstrap/scss/bootstrap'; */
 
 
+
+body{
+  overflow-y: auto !important;
+  padding: 0 !important;
+}
 // chat
-#chat-widget{
+#chat-widget {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -20,4 +25,151 @@
   overflow: hidden;
   box-shadow: 0px 0px 20px #9292923b;
   // border: 1px solid #38c17275;
+}
+
+
+// swal
+.swal2-validation-message{
+  margin-top: 15px;
+}
+
+.swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{
+  position: relative;
+  right: 7px;
+  margin: 0 !important;
+}
+
+
+// datatables
+.dataTables_length > label, .dataTables_filter > label{
+  display: flex;
+  align-items: center;
+}
+.dataTables_length > label > select{
+  margin: 0 8px;
+}
+
+.dataTables_filter > label > input{
+  height: 36px;
+  border: 1px solid #ebebeb;
+  border-radius: 4px;
+  color: #b2b2b2;
+  font-family: "Titillium Web", sans-serif;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0 8px;
+  padding: 0 10px;
+}
+input:focus, textarea:focus ,select:focus {
+  border: 1px solid rgba(50, 206, 99, 0.544) !important;
+}
+
+
+.dataTables_filter{
+  margin-bottom: 15px;
+}
+
+.dataTables_wrapper th {
+  background: white;
+  position: sticky;
+  top: 70px;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.15);
+  margin-top: 50px;
+  z-index: 1;
+}
+[dir='ltr'] .dataTable thead th{
+  text-align: left !important;
+}
+[dir='rtl'] .dataTable thead th{
+  text-align: right !important;
+}
+.dt-btn{
+  box-shadow: 1px 1px 3px grey;
+  display: inline-flex;
+  align-items: center;
+  font-size: 20px;
+  margin: 0 7px;
+}
+
+.dt-btn > svg{
+
+}
+
+
+
+
+
+
+
+// 
+.dashboard_content{
+  position: relative;
+  z-index: 1;
+}
+
+
+
+// custom classes
+.btn {
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3em 1.2em;
+  margin: 10px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: #FFF;
+  text-align: center;
+  transition: all 0.2s;
+  font-size: 18px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px red, 0px 0px 0px black, 0px 1px 3px #0000007d;
+}
+.btn-r{
+  border-radius: 2em;
+}
+
+
+
+
+.btn-primary {
+  background-color: #22caae;
+}
+.btn-primary:hover {
+  background-color: #09957e;
+}
+
+.btn-cancel {
+  background-color: #f27474;
+}
+.btn-cancel:hover {
+  background-color: #e45959;
+}
+
+
+.hdr{
+  border-bottom: 1px solid #DDD;
+  margin-bottom: 30px;
+}
+.hdr .swal2-title{
+  width: 100%;
+  text-align: justify;
+  font-size: 24px;
+  padding: 10px 0 0px 0;
+}
+.hdr-m{
+
+}
+
+
+// 
+
+.input-file-style{
+  input{
+    width: 100%;
+    border: 1px dotted #06b99b;
+    padding: 5px;
+    border-radius: 5px;
+  }
 }
