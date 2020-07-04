@@ -59,13 +59,22 @@ input:focus, textarea:focus, select:focus {
 }
 
 .dataTables_wrapper th {
-  background: white;
+  background: #2b373a;
+  color: #00d7b3;
   position: -webkit-sticky;
   position: sticky;
   top: 70px;
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.15);
   margin-top: 50px;
   z-index: 1;
+}
+
+.dataTable {
+  border: 1px solid #00d7b3 !important;
+}
+
+.dataTable td, .dataTable th {
+  border: 1px solid #00d7b31c;
 }
 
 [dir=ltr] .dataTable thead th {
@@ -80,8 +89,27 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 1px 1px 3px grey;
   display: inline-flex;
   align-items: center;
-  font-size: 20px;
   margin: 0 7px;
+  padding: 5px 10px 4px;
+  border-radius: 3px;
+}
+
+.dt-btn > svg {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+}
+
+.dt-btn-success {
+  background-color: #00d7b3;
+}
+
+.dt-btn-danger {
+  background-color: #f27474;
+}
+
+.dt-btn-warning {
+  background-color: orange;
 }
 
 .dashboard_content {

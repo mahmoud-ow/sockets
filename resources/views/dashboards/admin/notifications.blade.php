@@ -377,7 +377,7 @@
 
             <th>delete_token</th>
             <th>الإشعار</th>
-            <th>تم إشعارهم</th>
+            <th>الجمهور/اللغة</th>
             <th>مشاهدات</th>
             <th>التوقيت</th>
             <th>عمليات</th>
@@ -389,7 +389,7 @@
 
 
         </tbody>
-       
+
       </table>
 
 
@@ -466,6 +466,17 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
 <script>
   $(document).ready(function(){
 
+
+
+
+
+
+
+
+
+
+
+
     window.notificationsTable = $("#notifications_table").DataTable({
       language: dt_lang[language],
       "pageLength": 50,
@@ -482,7 +493,7 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
 
         {data: 'id', name: 'id', 'visible': false },
         {data: 'content', name: 'content' },
-        {data: 'count', name: 'count' },
+        {data: 'audience', name: 'audience' },
         {data: 'views', name: 'views'  },
         {data: 'created_at', name: 'created_at' },
         
@@ -491,10 +502,10 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
           className: "tabel-actions",
           "render": function ( data, type, full, meta ) {
               return `
-              <button class="dt-btn">
+              <button class="dt-btn dt-btn-success" onclick="window.editNotification('`+full.id+`')">
                 <svg><use xlink:href="#edit-icon"></use></svg> 
               </button>
-              <button class="dt-btn">
+              <button class="dt-btn dt-btn-danger" onclick="window.deleteNotification('`+full.delete_token+`')">
                 <svg><use xlink:href="#delete-icon"></use></svg> 
               </button>
 
@@ -512,9 +523,13 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
       "order": [[ 0, "desc" ]],
       "deferRender": true,
       "initComplete": function() {
+        
       },
       
     });
+
+
+    
 
 
 
@@ -653,6 +668,155 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
 
       })
     });
+
+
+    // edit notification
+    window.editNotification = function  (id) {
+
+      var id = id;
+
+      Swal.fire({
+        html:
+        '<p>جارى جلب البيانات ...</p><div class="lds-ring"><div></div><div></div><div></div><div></div></div>',
+        showConfirmButton: false,
+      })
+     
+
+
+      axios.get('/notifications/' + id)
+        .then(function (response) {
+
+          if (response.data.error == 0) {
+
+            console.log(response.data);
+
+            Swal.fire({
+              title: 'تعديل إشعار',
+              showCancelButton: true,
+              confirmButtonText: "حفظ",
+              cancelButtonText: "إلغاء",
+              customClass: {
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-cancel',
+        },
+        buttonsStyling: false,
+              showLoaderOnConfirm: true,
+              html:
+                `
+            <div id="edit_notification_modal">
+              <textarea class="form-control" style="direction:rtl;text-align:center;min-height:100px;" id="edit_notification_textarea">`+ response.data.content + `</textarea>
+            </div>
+            `,
+              preConfirm: () => {
+
+                if (!$("#edit_notification_textarea").val()) {
+                  Swal.showValidationMessage(window.translation.fields_required);
+                } else {
+
+
+                  return axios.put('/notifications/' + id, {
+                    notification: $("#edit_notification_textarea").val(),
+                  })
+                    .then(function (response) {
+
+                      if (response.data.error == 1) {
+                        throw new Error(response.data.message)
+                      }
+                      return response.data;
+                    }).catch(error => {
+                      Swal.showValidationMessage(
+                        `${error}`
+                      )
+                    });
+                }
+              },
+              allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+
+              if (result.value) {
+                if (result.value.error == 1) {
+
+                  window.Toast.fire({
+                    icon: 'error',
+                    title: result.value.message
+                  })
+
+
+                } else {
+                  window.Toast.fire({
+                    icon: 'success',
+                    title: result.value.message
+                  })
+
+                  window.notificationsTable.ajax.reload(null, false);
+                }
+              }
+
+
+            })
+
+
+
+          } else {
+
+            window.Toast.fire({
+              icon: 'error',
+              title: response.data.message,
+            })
+
+          }
+        });
+
+      }/* /editNotification() */
+
+
+
+
+    
+    
+    
+      // delete notification
+    window.deleteNotification = function(delete_token){
+      Swal.fire({
+        title: 'هل أنت متأكد',
+        text: "لن تساطيع إستعادة المحذوف",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: "نعم إحذف",
+        cancelButtonText: "إلغاء",
+        customClass: {
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-cancel',
+        },
+        buttonsStyling: false,
+      }).then((result) => {
+        if (result.value) {
+          axios.delete('/notifications/' + delete_token)
+            .then(function (response) {
+              if (response.data.error == 0) {
+
+                window.Toast.fire({
+                  icon: 'success',
+                  title: response.data.message,
+                })
+
+                window.notificationsTable.ajax.reload(null, false);
+              } else {
+
+                window.Toast.fire({
+                  icon: 'error',
+                  title: response.data.message,
+                })
+
+              }
+            });
+        }
+      })
+    }
+
+
+
+
     
   });
 

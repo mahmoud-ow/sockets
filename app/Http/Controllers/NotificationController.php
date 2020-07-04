@@ -204,6 +204,7 @@ class NotificationController extends Controller
                 $notification_row['id']           = $notification[0]->id;
                 $notification_row['delete_token'] = $notification[0]->delete_token;
                 $notification_row['content']      = "<textarea disabled class='form-control' style='direction:rtl;width:100%;height: 36px;min-height: 36px;text-align:center;'> ". $notification[0]->content ." </textarea>";
+                $notification_row['audience']     = $notification[0]->language;
                 $notification_row['count']        = $notification->count();
                 $notification_row['views']        = $notification->where('seen', 1)->count();
                 $notification_row['created_at']   = $notification[0]->created_at->calendar();
