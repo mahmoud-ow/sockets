@@ -66884,9 +66884,7 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-
-var PerfectScrollbar = __webpack_require__(/*! perfect-scrollbar */ "./node_modules/perfect-scrollbar/dist/perfect-scrollbar.esm.js")["default"];
-
+window.PerfectScrollbar = __webpack_require__(/*! perfect-scrollbar */ "./node_modules/perfect-scrollbar/dist/perfect-scrollbar.esm.js");
 Vue.component('chat-app', __webpack_require__(/*! ./components/chat/ChatApp.vue */ "./resources/js/components/chat/ChatApp.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -12,7 +12,7 @@ window.Vue = require('vue');
 
 
 
-let PerfectScrollbar = require('perfect-scrollbar').default;
+window.PerfectScrollbar = require('perfect-scrollbar');
 
 Vue.component('chat-app', require('./components/chat/ChatApp.vue').default);
 
