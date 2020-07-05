@@ -11,11 +11,6 @@ window.Vue = require('vue');
 
 
 
-
-import PerfectScrollbar from 'perfect-scrollbar';
-
-
-
 Vue.component('chat-app', require('./components/chat/ChatApp.vue').default);
 
 /**

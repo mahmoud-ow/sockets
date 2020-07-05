@@ -23,7 +23,7 @@
 </template>
 
 <script>
-
+import PerfectScrollbar from 'perfect-scrollbar';
 export default {
     props: {
         contacts: {
