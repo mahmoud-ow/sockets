@@ -43,7 +43,7 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar-jeremyedit@1.0.0/index.min.js"></script>
+
     <script src='{{asset($asset."/js/app.js?ver=".$ver)}}'  type='text/javascript'></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script> --}}
 
