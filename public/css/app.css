@@ -112,6 +112,11 @@ input:focus, textarea:focus, select:focus {
   background-color: orange;
 }
 
+.dt-btn-chat {
+  background-color: #585858;
+  color: #00d7b3;
+}
+
 .custom-tooltip {
   background-color: #0ae7c2 !important;
   color: black !important;

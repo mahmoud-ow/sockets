@@ -9,20 +9,11 @@
 <link href='{{asset($asset."/css/app.css?ver=".$ver)}}' rel='stylesheet' type='text/css'>
 <link href='{{asset($asset."/css/dashboards/admin/settings.css?ver=".$ver)}}' rel='stylesheet' type='text/css'>
 
-<link href='{{asset($asset."/plugins/country-picker-flags/build/css/countrySelect.min.css?ver=".$ver)}}'
-  rel='stylesheet' type='text/css'>
-<link href='{{asset($asset."/plugins/tooltipster-master/dist/css/tooltipster.bundle.min.css?ver=".$ver)}}'
-  rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
-<link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.css" />
 
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
 <link href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.css" rel="stylesheet"
   type="text/css" />
-<link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css" />
-
 
 @endsection
 
@@ -75,12 +66,6 @@
 
           </tr>
         </thead>
-        <tbody>
-
-
-
-        </tbody>
-
       </table>
 
 
@@ -97,33 +82,6 @@
   <!-- /DASHBOARD BODY -->
 
   <div class="shadow-film closed"></div>
-
-  <!-- SVG ARROW -->
-  <svg style="display: none;">
-    <symbol id="svg-arrow" viewBox="0 0 3.923 6.64014" preserveAspectRatio="xMinYMin meet">
-      <path
-        d="M3.711,2.92L0.994,0.202c-0.215-0.213-0.562-0.213-0.776,0c-0.215,0.215-0.215,0.562,0,0.777l2.329,2.329
-L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.717-2.718C3.925,3.482,3.925,3.135,3.711,2.92z" />
-    </symbol>
-  </svg>
-  <!-- /SVG ARROW -->
-
-  <!-- SVG PLUS -->
-  <svg style="display: none;">
-    <symbol id="svg-plus" viewBox="0 0 13 13" preserveAspectRatio="xMinYMin meet">
-      <rect x="5" width="3" height="13" />
-      <rect y="5" width="13" height="3" />
-    </symbol>
-  </svg>
-  <!-- /SVG PLUS -->
-
-  <!-- SVG MINUS -->
-  <svg style="display: none;">
-    <symbol id="svg-minus" viewBox="0 0 13 13" preserveAspectRatio="xMinYMin meet">
-      <rect y="5" width="13" height="3" />
-    </symbol>
-  </svg>
-  <!-- /SVG MINUS -->
 
 
 
@@ -148,7 +106,6 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
 
 
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="https://rawgit.com/Danielku15/FixedHeader/master/js/dataTables.fixedHeader.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.js"></script>
 
 <script src='{{asset($asset."/js/dashboards/admin/settings.js?ver=".$ver)}}' type='text/javascript'></script>
@@ -278,7 +235,7 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
 
 
 
-    // ad notification
+    // add notification
     $("#add_notification").on('click', function(){
       Swal.fire({
         title: TRANSLATION.add_notification,

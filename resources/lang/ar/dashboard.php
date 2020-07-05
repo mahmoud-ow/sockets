@@ -102,9 +102,21 @@ return [
   'audience' => 'منطقة الجمهور',
   'users' => 'المستخدمين',
   'conversations' => 'المحادثات',
+  'edit_account_type' => 'تعديل نوع حساب',
+  'update' => 'تحديث',
+  'cancel' => 'إلغاء',
 
+  'admin' => 'إدارة',
+  'buyer' => 'مشترى',
+  'seller' => 'بائع',
+  'store' => 'متجر',
+  'driver' => 'سائق',
 
-
+  'update_account_type_admin' => 'تم تغيير صلاحيات حسابك إلى حساب إدارة',
+  'update_account_type_buyer' => 'تم تغيير صلاحيات حسابك إلى حساب مشترى',
+  'update_account_type_seller' => 'تم تغيير صلاحيات حسابك إلى حساب بائع',
+  'update_account_type_store' => 'تم تغيير صلاحيات حسابك إلى حساب متجر',
+  'update_account_type_driver' => 'تم تغيير صلاحيات حسابك إلى حساب سائق',
 
 
 

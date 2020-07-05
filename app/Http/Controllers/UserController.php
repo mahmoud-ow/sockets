@@ -10,6 +10,92 @@ use App\Social;
 class UserController extends Controller
 {
 
+    public function usersView(Request $request){
+        return view('/dashboards.admin.users');
+    }
+    public function usersData(Request $request){
+        $users = User::where('email', '<>', 'admin@admin.com')->get();
+        return \Response::json( ['data' => $users] );
+                /* if($request->source){
+        } */
+    }
+
+    public function changeState(Request $request){
+        $update_state = User::where('id', $request->id)->update([ 'banned' => $request->new_state ]);
+        if(!$update_state){
+            return response()->json([ 'error' => 1, 'message' => trans('dashboard.something_wrong') ]);
+        }
+        return response()->json([ 'error' => 0, 'message' => trans('dashboard.updated_successfully') ]);
+    }/* /changeState() */
+
+    public function changeAccountType(Request $request){
+
+        $id = $request->account_id;
+        $email = $request->account_email;
+        $account_type = $request->account_type;
+
+        $update_account_type = User::where('id', $id)->where( 'email', $email )->update([ 'account_type' => $account_type ]);
+        if(!$update_account_type){
+            return response()->json([ 'error' => 1, 'message' => trans('dashboard.something_wrong') ]);
+        }
+
+
+        if(  $account_type == 'admin' ){
+            $notification = __('dashboard.update_account_type_admin');
+        } elseif(  $account_type == 'buyer' ){
+            $notification = __('dashboard.update_account_type_buyer');
+        } elseif( $account_type == 'seller' ){
+            $notification = __('dashboard.update_account_type_seller');
+        } elseif( $account_type == 'store' ){
+            $notification = __('dashboard.update_account_type_store');
+        } elseif( $account_type == 'driver' ){
+            $notification = __('dashboard.update_account_type_driver');
+        }
+
+        $notification_token = \Str::random(20);
+        $data=[];
+        $data[] = array(
+            'user_id'      => $id, 
+            'content'      => $notification, 
+            'language'     => auth()->user()->language,
+            'notification_token' => $notification_token,
+            "created_at"   => date('Y-m-d H:i:s'), # new \Datetime()
+            "updated_at"   => date('Y-m-d H:i:s'), # new \Datetime()
+        );
+
+
+        $create_notification = \App\Notification::insert($data);
+
+
+
+
+        return response()->json([ 'error' => 0, 'message' => trans('dashboard.updated_successfully') ]);
+
+    }/* /changeAccountType() */
+
+    public function delete(Request $request){
+        $deleteUser = User::where('id',$request->id)->delete();
+        if(!$deleteUser){
+            return response()->json([ 'error' => 1, 'message' => trans('dashboard.something_wrong') ]);
+        }
+        return response()->json([ 'error' => 0, 'message' => trans('dashboard.deleted_successfully') ]);
+    }/* /delete() */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function changeProfilePicture(Request $request){
         if(!$request->file('image')){return response()->json([ 'error' => 1, 'message' => __('dashboard.please_choose_image')  ]);}
 

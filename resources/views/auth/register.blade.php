@@ -73,7 +73,7 @@
                         <select name="account_type" id="account_type">
                             <option value="buyer">{{__('auth.buyer')}}</option>
                             <option value="seller">{{__('auth.seller')}}</option>
-                            <option value="shop">{{__('auth.shop')}}</option>
+                            <option value="store">{{__('auth.store')}}</option>
                             <option value="driver">{{__('auth.driver')}}</option>
                         </select>
                         <!-- SVG ARROW -->

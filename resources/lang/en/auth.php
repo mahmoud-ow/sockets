@@ -46,7 +46,7 @@ return [
     
     'buyer' => 'Buyer',
     'seller' => 'Seller',
-    'shop' => 'Shop',
+    'store' => 'Store',
     'driver' => 'Driver',
 
 

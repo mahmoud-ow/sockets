@@ -47,7 +47,7 @@ return [
 
     'buyer' => 'مشترى',
     'seller' => 'بائع',
-    'shop' => 'متجر',
+    'store' => 'متجر',
     'driver' => 'سائق',
 
 

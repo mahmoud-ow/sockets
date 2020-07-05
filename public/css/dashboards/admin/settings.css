@@ -2344,6 +2344,10 @@ input[type=checkbox]:checked + label > span > span {
   border-bottom-left-radius: 0;
 }
 
+.select-block > select, .select-block > select > option {
+  font-size: 16px;
+}
+
 .search-widget-form .select-block {
   float: left;
   width: 232px;
@@ -12617,4 +12621,90 @@ pre {
 
 #add_notification_modal tr > td:nth-of-type(2), #edit_notification_modal tr > td:nth-of-type(2) {
   width: 100%;
+}
+
+.switch {
+  align-items: center;
+  background-color: gray;
+  border-radius: 500px;
+  cursor: pointer;
+  display: flex;
+  height: 24px;
+  justify-content: space-between;
+  padding: 0 10px;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 60px;
+  display: flex !important;
+}
+
+.checkbox:checked ~ .switch {
+  background-color: #00d7b3;
+}
+
+.checkbox:not(:checked) ~ .switch {
+  background-color: gray;
+}
+
+.switch__left,
+.switch__right {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.checkbox:checked ~ .switch .switch__left {
+  visibility: hidden;
+}
+
+.checkbox:not(:checked) ~ .switch .switch__right {
+  visibility: hidden;
+}
+
+.switch__circle {
+  height: 16px;
+  padding: 0 5px;
+  position: absolute;
+  transition: all 0.1s linear;
+  width: 16px;
+}
+
+.checkbox:checked ~ .switch .switch__circle {
+  left: 0;
+  right: calc(100% - 40px);
+}
+
+.checkbox:not(:checked) ~ .switch .switch__circle {
+  left: calc(100% - 26px);
+  right: 0;
+}
+
+.switch__circle-inner {
+  background-color: white;
+  border-radius: 50%;
+  display: block;
+  height: 16px;
+  width: 16px;
+}
+
+.account-type {
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: #00d7b3;
+  text-transform: capitalize;
+  box-shadow: 1px 1px 3px grey;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+.account-type svg {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
 }

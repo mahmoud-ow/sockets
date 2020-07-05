@@ -83,7 +83,7 @@ class RegisterController extends Controller
             'account_type'   =>  'required',
         ]);
 
-        $account_types = ['buyer', 'seller', 'shop', 'driver'];
+        $account_types = ['buyer', 'seller', 'store', 'driver'];
   
         $verification_key = \Str::random(10);
         
