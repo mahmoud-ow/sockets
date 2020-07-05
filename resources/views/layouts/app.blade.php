@@ -45,8 +45,7 @@
 
 
     <script src='{{asset($asset."/js/app.js?ver=".$ver)}}'  type='text/javascript'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js">
-    </script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script> --}}
 
     <!-- jQuery -->
     
