@@ -59,7 +59,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 
-import PerfectScrollbar from 'perfect-scrollbar';
+
 
 
 
