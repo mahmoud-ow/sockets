@@ -81,10 +81,10 @@ $(document).ready(function () {
   $('#upload_image_btn').on('click', function () {
     var compClass = 'change_profile_picture';
     Swal.fire({
-      title: "تغيير صورة الحساب",
+      title: TRANSLATION.change_profile_picture,
       showCancelButton: true,
-      confirmButtonText: "حفظ",
-      cancelButtonText: "إلغاء",
+      confirmButtonText: TRANSLATION.save,
+      cancelButtonText: TRANSLATION.cancel,
       customClass: {
         confirmButton: 'btn btn-primary',
         cancelButton: 'btn btn-cancel',

@@ -2,9 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\User;
 
 
+Route::get('test', function () {
+    
+    $accounts = DB::table('users')->select('*');
+    $accounts = $accounts->where('account_type', 'buyer');
+    $accounts = $accounts->get();
+    return $accounts;
 
+});
 
 
 
@@ -36,9 +44,9 @@ Route::group(['middleware' => 'Lang' ], function(){
         Route::get('/all', 'NotificationController@fetch');
 
         Route::post('/', 'NotificationController@addNotification');
-        Route::get('/{id}', 'NotificationController@read');
-        Route::put('/{id}', 'NotificationController@update');
-        Route::delete('/{delete_token}', 'NotificationController@delete');
+        Route::get('/{notification_token}', 'NotificationController@edit');
+        Route::put('/{notification_token}', 'NotificationController@update');
+        Route::delete('/{notification_token}', 'NotificationController@delete');
 
     });
 

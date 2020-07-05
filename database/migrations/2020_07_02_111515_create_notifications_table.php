@@ -18,10 +18,11 @@ class CreateNotificationsTable extends Migration
 
 
             $table->unsignedBigInteger('user_id')->nullable()->comment('null if universal');
-            $table->longText('content', 1000);
+            $table->string('audience')->comment('all, buyer, seller, shop, driver');
             $table->string('language')->comment('user prefered language, this is a multi languages notifications system');
+            $table->longText('content', 1000);
             $table->integer('seen')->default(false);
-            $table->string('delete_token', 20);
+            $table->string('notification_token', 20);
             $table->string('source')->default('system')->comment('system / adminstration');
             $table->integer('order_id')->default(0)->comment('if the notification related to order');
             $table->integer('issue_id')->default(0)->comment('if the notification related to an issue');

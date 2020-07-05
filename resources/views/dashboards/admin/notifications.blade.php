@@ -11,6 +11,8 @@
 
 <link href='{{asset($asset."/plugins/country-picker-flags/build/css/countrySelect.min.css?ver=".$ver)}}'
   rel='stylesheet' type='text/css'>
+<link href='{{asset($asset."/plugins/tooltipster-master/dist/css/tooltipster.bundle.min.css?ver=".$ver)}}'
+  rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.css" />
@@ -37,324 +39,16 @@
 
 
 
-  <!-- SIDE MENU -->
-  <div id="dashboard-options-menu" class="side-menu dashboard left closed">
-    <!-- SVG PLUS -->
-    <svg class="svg-plus">
-      <use xlink:href="#svg-plus"></use>
-    </svg>
-    <!-- /SVG PLUS -->
-
-    <!-- SIDE MENU HEADER -->
-    <div class="side-menu-header">
-      <!-- USER QUICKVIEW -->
-      <div class="user-quickview">
-        <!-- USER AVATAR -->
-        <a href="author-profile.html">
-          <div class="outer-ring">
-            <div class="inner-ring"></div>
-            <figure class="user-avatar">
-              <img
-                src="{{ ( auth()->user()->getMedia('avatar')->first() ) ? auth()->user()->getMedia('avatar')->first()->getUrl('thumb') : 'images/avatars/avatar_01.jpg' }}"
-                alt="avatar">
-            </figure>
-          </div>
-        </a>
-        <!-- /USER AVATAR -->
-
-        <!-- USER INFORMATION -->
-        <p class="user-name" style="text-transform: capitalize;">{{auth()->user()->username}}</p>
-        <p class="user-money">${{auth()->user()->balance}}</p>
-        <!-- /USER INFORMATION -->
-      </div>
-      <!-- /USER QUICKVIEW -->
-    </div>
-    <!-- /SIDE MENU HEADER -->
-
-    <!-- SIDE MENU TITLE -->
-    <p class="side-menu-title">{{__('dashboard.your_account')}}</p>
-    <!-- /SIDE MENU TITLE -->
-
-    <!-- DROPDOWN -->
-    <ul class="dropdown dark hover-effect interactive">
-      <!-- DROPDOWN ITEM -->
-      <li class="dropdown-item">
-        <a href="/dashboard">
-          <span class="sl-icon icon-settings"></span>
-          {{__('dashboard.account_settings')}}
-        </a>
-      </li>
-      <!-- /DROPDOWN ITEM -->
-
-      <!-- DROPDOWN ITEM -->
-      <li class="dropdown-item active">
-        <a href="/notifications">
-          <span class="sl-icon icon-star"></span>
-          {{__('dashboard.notifications')}}
-        </a>
-        <!-- PIN -->
-        <span class="pin soft-edged big primary" style="opacity: 0">49</span>
-        <!-- /PIN -->
-      </li>
-      <!-- /DROPDOWN ITEM -->
-
-      <!-- DROPDOWN ITEM -->
-      {{-- <li class="dropdown-item interactive">
-      <a href="#">
-        <span class="sl-icon icon-envelope"></span>
-        Messages
-        <!-- SVG ARROW -->
-        <svg class="svg-arrow">
-          <use xlink:href="#svg-arrow"></use>
-        </svg>
-        <!-- /SVG ARROW -->
-      </a>
-
-      <!-- INNER DROPDOWN -->
-      <ul class="inner-dropdown">
-        <!-- INNER DROPDOWN ITEM -->
-        <li class="inner-dropdown-item">
-          <a href="dashboard-inbox.html">Your Inbox (36)</a>
-          <!-- PIN -->
-          <span class="pin soft-edged secondary">2</span>
-          <!-- /PIN -->
-        </li>
-        <!-- /INNER DROPDOWN ITEM -->
-
-        <!-- INNER DROPDOWN ITEM -->
-        <li class="inner-dropdown-item">
-          <a href="dashboard-inbox-v2.html">Your Inbox (36) V2</a>
-        </li>
-        <!-- /INNER DROPDOWN ITEM -->
-
-        <!-- INNER DROPDOWN ITEM -->
-        <li class="inner-dropdown-item">
-          <a href="dashboard-openmessage.html">Open Message</a>
-        </li>
-        <!-- /INNER DROPDOWN ITEM -->
-
-        <!-- INNER DROPDOWN ITEM -->
-        <li class="inner-dropdown-item">
-          <a href="dashboard-inbox.html">Starred Message</a>
-        </li>
-        <!-- /INNER DROPDOWN ITEM -->
-
-        <!-- INNER DROPDOWN ITEM -->
-        <li class="inner-dropdown-item">
-          <a href="dashboard-inbox.html">Deleted Messages</a>
-        </li>
-        <!-- /INNER DROPDOWN ITEM -->
-      </ul>
-      <!-- INNER DROPDOWN -->
-
-      <!-- PIN -->
-      <span class="pin soft-edged big secondary">!</span>
-      <!-- /PIN -->
-    </li> --}}
-      <!-- /DROPDOWN ITEM -->
-
-      <!-- DROPDOWN ITEM -->
-      {{-- <li class="dropdown-item">
-      <a href="dashboard-purchases.html">
-        <span class="sl-icon icon-tag"></span>
-        Your Purchases
-      </a>
-    </li> --}}
-      <!-- /DROPDOWN ITEM -->
-
-      <!-- DROPDOWN ITEM -->
-      {{-- <li class="dropdown-item">
-      <a href="dashboard-buycredits.html">
-        <span class="sl-icon icon-credit-card"></span>
-        Buy Credits
-      </a>
-    </li> --}}
-      <!-- /DROPDOWN ITEM -->
-    </ul>
-    <!-- /DROPDOWN -->
-
-    <!-- SIDE MENU TITLE -->
-    <p class="side-menu-title">{{__('dashboard.info_statics')}}</p>
-    <!-- /SIDE MENU TITLE -->
-
-    <!-- DROPDOWN -->
-    <ul class="dropdown dark hover-effect">
-      <!-- DROPDOWN ITEM -->
-      <li class="dropdown-item">
-        <a href="dashboard-statement.html">
-          <span class="sl-icon icon-layers"></span>
-          {{__('dashboard.sales_statment')}}
-        </a>
-      </li>
-      <!-- /DROPDOWN ITEM -->
-
-      <!-- DROPDOWN ITEM -->
-      <li class="dropdown-item">
-        <a href="dashboard-statistics.html">
-          <span class="sl-icon icon-chart"></span>
-          {{__('dashboard.statics')}}
-        </a>
-      </li>
-      <!-- /DROPDOWN ITEM -->
-    </ul>
-    <!-- /DROPDOWN -->
-
-    <!-- SIDE MENU TITLE -->
-    <p class="side-menu-title">{{__('dashboard.author_tools')}}</p>
-    <!-- /SIDE MENU TITLE -->
-
-    <!-- DROPDOWN -->
-    <ul class="dropdown dark hover-effect">
-      <!-- DROPDOWN ITEM -->
-      <li class="dropdown-item">
-        <a href="dashboard-uploaditem.html">
-          <span class="sl-icon icon-arrow-up-circle"></span>
-          {{__('dashboard.upload_item')}}
-        </a>
-      </li>
-      <!-- /DROPDOWN ITEM -->
-
-      <!-- DROPDOWN ITEM -->
-      <li class="dropdown-item">
-        <a href="dashboard-manageitems.html">
-          <span class="sl-icon icon-folder-alt"></span>
-          {{__('dashboard.manage_items')}}
-        </a>
-      </li>
-      <!-- /DROPDOWN ITEM -->
-
-      <!-- DROPDOWN ITEM -->
-      <li class="dropdown-item">
-        <a href="dashboard-withdrawals.html">
-          <span class="sl-icon icon-wallet"></span>
-          {{__('dashboard.withdrawal')}}
-        </a>
-      </li>
-      <!-- /DROPDOWN ITEM -->
-    </ul>
-    <!-- /DROPDOWN -->
-
-    {{-- <a href="#" class="button medium secondary">Logout</a> --}}
-    <form action="/users/logout" method="POST">
-      @csrf
-      <button class="button medium secondary">{{__('dashboard.logout')}} </button>
-    </form>
+  @include('/dashboards.admin.side_menu')
 
 
-
-  </div>
-  <!-- /SIDE MENU -->
 
   <!-- DASHBOARD BODY -->
   <div class="dashboard-body">
 
 
 
-
-    <!-- DASHBOARD HEADER -->
-    <div class="dashboard-header retracted">
-      <!-- DB CLOSE BUTTON -->
-      <a href="/" class="db-close-button">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-            d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" />
-          <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-        </svg>
-      </a>
-      <!-- DB CLOSE BUTTON -->
-
-      <!-- DB OPTIONS BUTTON -->
-      <div class="db-options-button">
-        <img src="images/dashboard/db-list-right.png" alt="db-list-right">
-        <img src="images/dashboard/close-icon.png" alt="close-icon">
-      </div>
-      <!-- DB OPTIONS BUTTON -->
-
-      <!-- DASHBOARD HEADER ITEM -->
-      <div class="dashboard-header-item title">
-        <!-- DB SIDE MENU HANDLER -->
-        <div class="db-side-menu-handler">
-          <img src="images/dashboard/db-list-left.png" alt="db-list-left">
-        </div>
-        <!-- /DB SIDE MENU HANDLER -->
-        <h6>{{__('dashboard.dashboard')}}</h6>
-      </div>
-      <!-- /DASHBOARD HEADER ITEM -->
-
-      <!-- DASHBOARD HEADER ITEM -->
-      {{-- 
-        <div class="dashboard-header-item form">
-          <form class="dashboard-search">
-            <input type="text" name="search" id="search_dashboard" placeholder="Search on dashboard...">
-            <input type="image" src="images/dashboard/search-icon.png" alt="search-icon">
-          </form>
-        </div> 
-       --}}
-      <!-- /DASHBOARD HEADER ITEM -->
-
-      <!-- DASHBOARD HEADER ITEM -->
-      <div class="dashboard-header-item stats">
-        <!-- STATS META -->
-        <div class="stats-meta">
-          <div class="pie-chart pie-chart1">
-            <!-- SVG PLUS -->
-            <svg class="svg-plus primary">
-              <use xlink:href="#svg-plus"></use>
-            </svg>
-            <!-- /SVG PLUS -->
-          </div>
-          <h6>64.579</h6>
-          <p>{{__('dashboard.new_original_visits')}}</p>
-        </div>
-        <!-- /STATS META -->
-      </div>
-      <!-- /DASHBOARD HEADER ITEM -->
-
-      <!-- DASHBOARD HEADER ITEM -->
-      <div class="dashboard-header-item stats">
-        <!-- STATS META -->
-        <div class="stats-meta">
-          <div class="pie-chart pie-chart2">
-            <!-- SVG PLUS -->
-            <svg class="svg-minus tertiary">
-              <use xlink:href="#svg-minus"></use>
-            </svg>
-            <!-- /SVG PLUS -->
-          </div>
-          <h6>20.8</h6>
-          <p>{{__('dashboard.less_sales_than_last_month')}}</p>
-        </div>
-        <!-- /STATS META -->
-      </div>
-      <!-- /DASHBOARD HEADER ITEM -->
-
-      <!-- DASHBOARD HEADER ITEM -->
-      <div class="dashboard-header-item stats">
-        <!-- STATS META -->
-        <div class="stats-meta">
-          <div class="pie-chart pie-chart3">
-            <!-- SVG PLUS -->
-            <svg class="svg-plus primary">
-              <use xlink:href="#svg-plus"></use>
-            </svg>
-            <!-- /SVG PLUS -->
-          </div>
-          <h6>322k</h6>
-          <p>{{__('dashboard.total_visits_this_month')}}</p>
-        </div>
-        <!-- /STATS META -->
-      </div>
-      <!-- /DASHBOARD HEADER ITEM -->
-
-      <!-- DASHBOARD HEADER ITEM -->
-      <div class="dashboard-header-item back-button">
-        <a href="/" class="button mid dark-light">{{__('dashboard.back_to_home_page')}}</a>
-      </div>
-      <!-- /DASHBOARD HEADER ITEM -->
-    </div>
-    <!-- DASHBOARD HEADER -->
-
+    @include('/dashboards.admin.header')
 
 
 
@@ -362,25 +56,22 @@
     <div class="dashboard-content">
       <!-- HEADLINE -->
       <div class="headline buttons primary">
-        <h4>Your Notifications</h4>
-        <a href="#" id="add_notification" class="button mid-short primary">إضافة إشعار</a>
+        <h4>{{__('dashboard.notifications')}}</h4>
+        <a href="#" id="add_notification" class="button mid-short primary">{{__('dashboard.add_notification')}}</a>
       </div>
       <!-- /HEADLINE -->
-
-
-
 
 
       <table id="notifications_table" class="display responsive nowrap" width="100%" cellspacing="0" width="100%">
         <thead class="thead-dark">
           <tr>
 
-            <th>delete_token</th>
-            <th>الإشعار</th>
-            <th>الجمهور/اللغة</th>
-            <th>مشاهدات</th>
-            <th>التوقيت</th>
-            <th>عمليات</th>
+            <th>notification_token</th>
+            <th>{{__('dashboard.the_notification')}}</th>
+            <th>{{__('dashboard.audience_language')}}</th>
+            <th>{{__('dashboard.views')}}</th>
+            <th>{{__('dashboard.time')}}</th>
+            <th>{{__('dashboard.operations')}}</th>
 
           </tr>
         </thead>
@@ -462,22 +153,49 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
 
 <script src='{{asset($asset."/js/dashboards/admin/settings.js?ver=".$ver)}}' type='text/javascript'></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+
 
 <script>
   $(document).ready(function(){
+    
+    const TRANSLATION = {
+
+      language : "{!! \App::getLocale() !!}",
+      please_wait: "{!! trans('dashboard.please_wait') !!} ",
+      count_notified: "{!! trans('dashboard.count_notified') !!} ",
+
+      add: "{!! trans('dashboard.add') !!} ",
+      cancel: "{!! trans('dashboard.cancel') !!} ",
+      save: "{!! trans('dashboard.save') !!} ",
+      add_notification: "{!! trans('dashboard.add_notification') !!} ",
+      accounts_types : "{!! trans('dashboard.accounts_types') !!}",
+      accounts_languages : "{!! trans('dashboard.accounts_languages') !!}",
+      notification_field_required : "{!! trans('dashboard.notification_field_required') !!}",
+      notification_here : "{!! trans('dashboard.notification_here') !!}",
+
+      all : "{!! trans('dashboard.all') !!}",
+      buyers : "{!! trans('dashboard.buyers') !!}",
+      sellers : "{!! trans('dashboard.sellers') !!}",
+      stores : "{!! trans('dashboard.stores') !!}",
+      drivers : "{!! trans('dashboard.drivers') !!}",
+      arabic : "{!! trans('dashboard.arabic') !!}",
+      english : "{!! trans('dashboard.english') !!}",
+      loading_data : "{!! trans('dashboard.loading_data') !!}",
+      edit_notification : "{!! trans('dashboard.edit_notification') !!}",
+      are_you_sure : "{!! trans('dashboard.are_you_sure') !!}",
+      cant_revert : "{!! trans('dashboard.cant_revert') !!}",
+      yes_delete : "{!! trans('dashboard.yes_delete') !!}",
+
+    };/* TRANSLATION */
 
 
 
 
-
-
-
-
-
-
-
+    //$('.tooltip').tooltipster();
 
     window.notificationsTable = $("#notifications_table").DataTable({
+      
       language: dt_lang[language],
       "pageLength": 50,
 
@@ -485,6 +203,7 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
       "ajax": {
         url: "/notifications/all",
         type: 'GET',
+        
       },
       "columnDefs": [
         { targets: [0],  orderable: true },
@@ -502,18 +221,14 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
           className: "tabel-actions",
           "render": function ( data, type, full, meta ) {
               return `
-              <button class="dt-btn dt-btn-success" onclick="window.editNotification('`+full.id+`')">
+              <button class="dt-btn dt-btn-success" onclick="window.editNotification('`+full.notification_token+`')">
                 <svg><use xlink:href="#edit-icon"></use></svg> 
               </button>
-              <button class="dt-btn dt-btn-danger" onclick="window.deleteNotification('`+full.delete_token+`')">
+              <button class="dt-btn dt-btn-danger" onclick="window.deleteNotification('`+full.notification_token+`')">
                 <svg><use xlink:href="#delete-icon"></use></svg> 
               </button>
-
               `;
               
-              
-             /*  '<button class="bg-primary dt-btn" onclick="App.NotificationController().editNotification(\''+full.delete_token+'\')"><i class="material-icons">edit</i></button><button class="bg-danger dt-btn" onclick="App.NotificationController().deleteNotification(\''+full.delete_token+'\')"><i class="material-icons">delete_forever</i></button>';
-               */
 
           }
         },
@@ -524,6 +239,30 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
       "deferRender": true,
       "initComplete": function() {
         
+      },
+      "drawCallback": function() {
+        
+        
+
+        tippy('.myButton', {
+          content: TRANSLATION.count_notified,
+          onMount(instance) {
+          const box = instance.popper.firstElementChild;
+            requestAnimationFrame(() => {
+              box.classList.add('animate__animated');
+              box.classList.add('animate__pulse');
+              box.classList.add('custom-tooltip');
+            });
+          },
+          onHidden(instance) {
+            const box = instance.popper.firstElementChild;
+            box.classList.remove('animate__animated');
+            box.classList.remove('animate__pulse');
+          },
+        });
+
+
+
       },
       
     });
@@ -542,10 +281,10 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
     // ad notification
     $("#add_notification").on('click', function(){
       Swal.fire({
-        title: 'إضافة إشعار',
+        title: TRANSLATION.add_notification,
         showCancelButton: true,
-        confirmButtonText: 'إضافة',
-        cancelButtonText: 'إالغاء',
+        confirmButtonText: TRANSLATION.add,
+        cancelButtonText: TRANSLATION.cancel,
         customClass: {
           confirmButton: 'btn btn-primary',
           cancelButton: 'btn btn-cancel',
@@ -557,23 +296,23 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
         html:
           `
         <div id="add_notification_modal">
-          <textarea class="form-control" id="add_notification_textarea" placeholder="إكتب الإشعار هنا"></textarea>
+          <textarea class="form-control" id="add_notification_textarea" placeholder="`+TRANSLATION.notification_here+`"></textarea>
           
           
           <table>
           
             <tr>
               <td>
-                نوع الحسابات
+                `+TRANSLATION.accounts_types+`
               </td>
               <td>
                 <label for="notification_accounts" class="select-block">
                   <select form="profile-info-form" name="notification_accounts" id="notification_accounts">
-                    <option value="all">الجميع</option>
-                    <option value="buyers"> المشترين</option>
-                    <option value="sellers"> البائعين</option>
-                    <option value="stores">المتاجر</option>
-                    <option value="drivers">السائقين</option>
+                    <option value="all">`+TRANSLATION.all+`</option>
+                    <option value="buyer"> `+TRANSLATION.buyers+`</option>
+                    <option value="seller"> `+TRANSLATION.sellers+`</option>
+                    <option value="store">`+TRANSLATION.stores+`</option>
+                    <option value="driver">`+TRANSLATION.drivers+`</option>
                   </select>
                 
                   <svg class="svg-arrow">
@@ -587,14 +326,14 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
 
             <tr>
               <td>
-                لغة الحسابات
+                `+TRANSLATION.accounts_languages+`
               </td>
               <td>
                 <label for="notification_language" class="select-block">
                   <select form="profile-info-form" name="notification_language" id="notification_language">
-                    <option value="all">الجميع</option>
-                    <option value="ar">العربية</option>
-                    <option value="en">الإنجليزية</option>
+                    <option value="all">`+TRANSLATION.all+`</option>
+                    <option value="ar">`+TRANSLATION.arabic+`</option>
+                    <option value="en">`+TRANSLATION.english+`</option>
                   </select>
                 
                   <svg class="svg-arrow">
@@ -622,7 +361,7 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
         preConfirm: () => {
 
           if (!$("#add_notification_textarea").val()) {
-            Swal.showValidationMessage("حقل الإشعار مطلوب");
+            Swal.showValidationMessage(TRANSLATION.notification_field_required);
           } else {
 
             return axios.post('/notifications', {
@@ -646,6 +385,7 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
         allowOutsideClick: () => !Swal.isLoading()
       }).then((result) => {
 
+
         if (result.value) {
           if (result.value.error == 1) {
 
@@ -660,30 +400,43 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
               icon: 'success',
               title: result.value.message
             })
-
             window.notificationsTable.ajax.reload(null, false);
+
           }
         }
 
 
       })
+      $("#add_notification_textarea").focus();
     });
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // edit notification
-    window.editNotification = function  (id) {
+    window.editNotification = function  (notification_token) {
 
-      var id = id;
+      var notification_token = notification_token;
 
       Swal.fire({
         html:
-        '<p>جارى جلب البيانات ...</p><div class="lds-ring"><div></div><div></div><div></div><div></div></div>',
+        '<p>'+TRANSLATION.loading_data+'</p><div class="lds-ring"><div></div><div></div><div></div><div></div></div>',
         showConfirmButton: false,
       })
      
 
 
-      axios.get('/notifications/' + id)
+      axios.get('/notifications/' + notification_token)
         .then(function (response) {
 
           if (response.data.error == 0) {
@@ -691,22 +444,18 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
             console.log(response.data);
 
             Swal.fire({
-              title: 'تعديل إشعار',
+              title: TRANSLATION.edit_notification,
               showCancelButton: true,
-              confirmButtonText: "حفظ",
-              cancelButtonText: "إلغاء",
+              confirmButtonText: TRANSLATION.save,
+              cancelButtonText: TRANSLATION.cancel,
               customClass: {
-          confirmButton: 'btn btn-primary',
-          cancelButton: 'btn btn-cancel',
-        },
-        buttonsStyling: false,
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-cancel',
+                header: 'hdr hdr-m',
+              },
+              buttonsStyling: false,
               showLoaderOnConfirm: true,
-              html:
-                `
-            <div id="edit_notification_modal">
-              <textarea class="form-control" style="direction:rtl;text-align:center;min-height:100px;" id="edit_notification_textarea">`+ response.data.content + `</textarea>
-            </div>
-            `,
+              html: response.data.edit_html,
               preConfirm: () => {
 
                 if (!$("#edit_notification_textarea").val()) {
@@ -714,11 +463,13 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
                 } else {
 
 
-                  return axios.put('/notifications/' + id, {
-                    notification: $("#edit_notification_textarea").val(),
+                  return axios.put('/notifications/' + notification_token, {
+                    notification_content: $("#edit_notification_textarea").val(),
+                    notification_accounts: $('#edit_notification_accounts').val(),
+                    notification_language : $("#edit_notification_language").val(),
                   })
                     .then(function (response) {
-
+                      console.log( JSON.stringify(response.data) );
                       if (response.data.error == 1) {
                         throw new Error(response.data.message)
                       }
@@ -776,14 +527,14 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
     
     
       // delete notification
-    window.deleteNotification = function(delete_token){
+    window.deleteNotification = function(notification_token){
       Swal.fire({
-        title: 'هل أنت متأكد',
-        text: "لن تساطيع إستعادة المحذوف",
+        title: TRANSLATION.are_you_sure,
+        text: TRANSLATION.cant_revert,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: "نعم إحذف",
-        cancelButtonText: "إلغاء",
+        confirmButtonText: TRANSLATION.yes_delete,
+        cancelButtonText: TRANSLATION.cancel,
         customClass: {
           confirmButton: 'btn btn-primary',
           cancelButton: 'btn btn-cancel',
@@ -791,7 +542,7 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
         buttonsStyling: false,
       }).then((result) => {
         if (result.value) {
-          axios.delete('/notifications/' + delete_token)
+          axios.delete('/notifications/' + notification_token)
             .then(function (response) {
               if (response.data.error == 0) {
 
@@ -821,11 +572,7 @@ L0.217,5.638c-0.215,0.215-0.214,0.562,0,0.776c0.214,0.214,0.562,0.215,0.776,0l2.
   });
 
   
-  window.translation = {
-
-    'please_choose_image': "{!! __('dashboard.please_choose_image') !!} ",
-
-  };
+ 
 
 
 </script>

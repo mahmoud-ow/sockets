@@ -119,6 +119,26 @@ input:focus, textarea:focus ,select:focus {
 
 
 
+.custom-tooltip{
+  background-color: #0ae7c2 !important;
+  color: black !important;
+}
+
+
+
+.tippy-box[data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: tomato !important;
+}
+.tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: tomato !important;
+}
+.tippy-box[data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: tomato !important;
+}
+.tippy-box[data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: tomato !important;
+}
+
 
 
 // 

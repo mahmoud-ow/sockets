@@ -1043,6 +1043,10 @@
 [dir=ltr] {
 }
 
+[dir=ltr] *:not(.sl-icon):not(.type-icon) {
+  font-family: "Titillium Web", sans-serif;
+}
+
 [dir=rtl] {
 }
 
@@ -2902,6 +2906,22 @@ header,
   border-color: #2b373a;
 }
 
+.dropdown.secondary .dropdown-item.active > a {
+  border-left: 6px solid #1396e1;
+}
+
+.dropdown.tertiary .dropdown-item.active > a {
+  border-left: 6px solid #e61852;
+}
+
+[dir=ltr] .dropdown .dropdown-item.active > a {
+  border-left: 6px solid #00d7b3;
+}
+
+[dir=rtl] .dropdown .dropdown-item.active > a {
+  border-right: 6px solid #00d7b3;
+}
+
 [dir=ltr] .dropdown.dark .dropdown-item.active > a {
   color: #fff;
   border-left: 6px solid #00d7b3;
@@ -2956,25 +2976,9 @@ header,
   cursor: auto;
 }
 
-.dropdown.secondary .dropdown-item.active > a {
-  border-left: 6px solid #1396e1;
-}
-
-.dropdown.tertiary .dropdown-item.active > a {
-  border-left: 6px solid #e61852;
-}
-
 .dropdown .dropdown-item {
   border-bottom: 1px solid #ebebeb;
   position: relative;
-}
-
-[dir=ltr] .dropdown .dropdown-item.active > a {
-  border-left: 6px solid #00d7b3;
-}
-
-[dir=rtl] .dropdown .dropdown-item.active > a {
-  border-right: 6px solid #00d7b3;
 }
 
 .dropdown .dropdown-item > .dropdown {
@@ -12595,22 +12599,22 @@ pre {
     float: none;
   }
 }
-#add_notification_modal textarea {
+#add_notification_modal textarea, #edit_notification_modal textarea {
   min-height: 100px;
 }
 
-[dir=ltr] #add_notification_modal tr > td:nth-of-type(1) {
+[dir=ltr] #add_notification_modal tr > td:nth-of-type(1), [dir=ltr] #edit_notification_modal tr > td:nth-of-type(1) {
   padding: 0 20px 0 0px;
   text-align: left;
   white-space: nowrap;
 }
 
-[dir=rtl] #add_notification_modal tr > td:nth-of-type(1) {
+[dir=rtl] #add_notification_modal tr > td:nth-of-type(1), [dir=rtl] #edit_notification_modal tr > td:nth-of-type(1) {
   padding: 0 0 0 20px;
   text-align: right;
   white-space: nowrap;
 }
 
-#add_notification_modal tr > td:nth-of-type(2) {
+#add_notification_modal tr > td:nth-of-type(2), #edit_notification_modal tr > td:nth-of-type(2) {
   width: 100%;
 }

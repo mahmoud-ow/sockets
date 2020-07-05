@@ -41,7 +41,7 @@ class DashBoardController extends Controller
 
 
     public static function adminDashboard(){
-        return view('dashboards.admin.dashboard');
+        return view('dashboards.admin.settings');
     }/* /adminDashboard() */
 
     

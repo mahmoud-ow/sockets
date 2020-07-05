@@ -2,14 +2,64 @@ window._ = require('lodash');
 
 try {
     window.Popper = require('popper.js').default;
+    window.tippy = require('tippy.js').default;
+    
     window.$ = window.jQuery = require('jquery');
     require('bootstrap');
 } catch (e) { }
 
 
 
+
+
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css'; // optional for styling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -34,6 +84,7 @@ window.Echo = new Echo({
     encrypted: true,
     enabledTransports: ['ws', 'wss'],
 });
+
 
 
 
