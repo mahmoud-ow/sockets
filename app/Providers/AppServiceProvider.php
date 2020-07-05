@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         if( \Request::server ("HTTP_HOST") == "127.0.0.1:8000" or \Request::server ("HTTP_HOST") == "127.0.0.1:3000" ){
             \View::share('asset', '');
         } else {
-            \View::share('asset', '/public');
+            \View::share('asset', '');
         }
 
 
