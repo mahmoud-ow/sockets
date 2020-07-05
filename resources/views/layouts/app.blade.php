@@ -34,9 +34,9 @@
 
 
         @if(auth()->check())
-        {{-- <div id="chat-widget">
+        <div id="chat-widget">
             <chat-app :user="{{auth()->user()}}" />
-        </div> --}}
+        </div>
         <!-- /#chat-widget -->
         @endif
     </div>
