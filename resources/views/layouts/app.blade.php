@@ -29,27 +29,24 @@
 <body>
 
     <div id="app">
-
         @yield('body')
-
-
-        @if(auth()->check())
-        <div id="chat-widget">
-            <chat-app :user="{{auth()->user()}}" />
-        </div>
-        <!-- /#chat-widget -->
-        @endif
     </div>
 
 
 
 
     <script src='{{asset($asset."/js/app.js?ver=".$ver)}}'  type='text/javascript'></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js">
+    </script>
 
-    <!-- jQuery -->
-    
+    @if(auth()->check())
+    <div id="chat-widget">
+        <chat-app :user="{{auth()->user()}}" />
+    </div>
+    <!-- /#chat-widget -->
+    @endif
 
+ 
     <script>
         
         window.language = '{!! app()->getLocale() !!}';    
