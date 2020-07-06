@@ -43,7 +43,7 @@ class NewMessage implements ShouldBroadcast
 
     public function broadcastwith(){
         $user = User::find($this->message->from);
-        $user->profile_image = ( $contact->getMedia('avatar')->first() ) ? $contact->getMedia('avatar')->first()->getUrl('thumb') : 'images/dashboard/profile-default-image.png' ;
+        $user->profile_image = ( $user->getMedia('avatar')->first() ) ? $user->getMedia('avatar')->first()->getUrl('thumb') : 'images/dashboard/profile-default-image.png' ;
         $this->message->fromContact = $user;
         return ['message' => $this->message];
     }
