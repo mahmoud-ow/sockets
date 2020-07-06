@@ -12,6 +12,7 @@ use Illuminate\Queue\SerializesModels;
 //use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 use App\Message;
+use App\User;
 
 
 class NewMessage implements ShouldBroadcast
@@ -41,7 +42,9 @@ class NewMessage implements ShouldBroadcast
     }
 
     public function broadcastwith(){
-        $this->message->load('fromContact');
+        $user = User::find($this->message->from);
+        $user->profile_image = ( $contact->getMedia('avatar')->first() ) ? $contact->getMedia('avatar')->first()->getUrl('thumb') : 'images/dashboard/profile-default-image.png' ;
+        $this->message->fromContact = $user;
         return ['message' => $this->message];
     }
 }
