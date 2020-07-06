@@ -12,6 +12,7 @@ use Illuminate\Queue\SerializesModels;
 //use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 use App\Message;
+use App\User;
 
 
 class NewMessage implements ShouldBroadcast
@@ -41,7 +42,8 @@ class NewMessage implements ShouldBroadcast
     }
 
     public function broadcastwith(){
-        $this->message->load('fromContact');
+        $user = User::find(2);
+        $this->message->fromContact = $user;
         return ['message' => $this->message];
     }
 }
