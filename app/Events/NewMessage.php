@@ -43,7 +43,7 @@ class NewMessage implements ShouldBroadcast
 
     public function broadcastwith(){
         $user = User::find(2);
-        $this->message->fromContact = $user;
+        $this->message->from_contact = $user;
         return ['message' => $this->message];
     }
 }

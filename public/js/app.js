@@ -4848,21 +4848,22 @@ __webpack_require__.r(__webpack_exports__);
       if (this.selectedContact && message.from == this.selectedContact.id) {
         this.saveNewMessage(message);
         return;
-      } //this.updateUnreadCount(message.from_contact, false);
-      // check contact existance ( add to contact list if not exist )
+      }
 
-      /* var self = this;
+      this.updateUnreadCount(message.from_contact, false); // check contact existance ( add to contact list if not exist )
+
+      var self = this;
       var found = 0;
       var viewContact = message.from_contact;
-      this.contacts.forEach(function(contact) {
-          if (contact.id == viewContact.id) {
-              found = 1;
-          }
+      this.contacts.forEach(function (contact) {
+        if (contact.id == viewContact.id) {
+          found = 1;
+        }
       });
-      if (found == 0) {
-          self.contacts.unshift(viewContact);
-      } */
 
+      if (found == 0) {
+        self.contacts.unshift(viewContact);
+      }
     },
     updateUnreadCount: function updateUnreadCount(contact, reset) {
       this.contacts = this.contacts.map(function (single) {
