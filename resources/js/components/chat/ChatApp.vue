@@ -37,7 +37,8 @@ export default {
 
         Echo.private(`messages.${this.user.id}`).listen("NewMessage", e => {
             this.handleIncoming(e.message);
-            console.log( JSON.stringify(e) );
+            
+            console.log(e.from_contact.id +'/'+ e.from_contact.username);
             
         });
 
