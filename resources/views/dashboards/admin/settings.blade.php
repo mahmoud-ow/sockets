@@ -30,8 +30,8 @@
 
   <!-- DASHBOARD BODY -->
   <div class="dashboard-body">
-   
-   
+
+
     @include('/dashboards.admin.header')
 
 
@@ -100,7 +100,8 @@
           <!-- INPUT CONTAINER -->
           <div class="input-container half">
             <label for="website_url" class="rl-label">{{__('dashboard.website')}}</label>
-            <input type="text" id="website_url" name="website_url" value="{{auth()->user()->website}}" placeholder="{{__('dashboard.enter_website')}}">
+            <input type="text" id="website_url" name="website_url" value="{{auth()->user()->website}}"
+              placeholder="{{__('dashboard.enter_website')}}">
           </div>
           <!-- /INPUT CONTAINER -->
 
@@ -130,9 +131,31 @@
           </div>
           <!-- /INPUT CONTAINER -->
 
+
+
+
+          <!-- INPUT CONTAINER -->
+          <div class="input-container">
+
+            <br>
+            <hr class="line-separator">
+
+            <label for="country1" class="rl-label">خرائط و مواقع</label>
+
+
+            <div id="googleMap" style="height: 340px;width: 100%;background-color:rgb(163, 163, 163);"></div>
+
+
+
+          </div>
+          <!-- /INPUT CONTAINER -->
+
+
+
+
+
         </div>
         <!-- /FORM BOX ITEM -->
-
 
 
 
@@ -155,7 +178,7 @@
               <li><a href="#" class="fb"></a></li>
             </ul>
             <input form="profile-info-form" type="text" id="social_fb_link" name="social_fb_link"
-          value="{{$social->fb_url}}" placeholder="{{__('dashboard.enter_social_link')}}">
+              value="{{$social->fb_url}}" placeholder="{{__('dashboard.enter_social_link')}}">
           </div>
           <!-- /INPUT CONTAINER -->
 
@@ -227,7 +250,6 @@
 
 
 
-
       </div>
       <!-- /FORM BOX -->
     </div>
@@ -263,7 +285,58 @@
 
 
 <script>
+  function initMap(){
+            
+            
+    var options = {
+        zoom   : 5,
+        center : {lat: 31.963, lng: 35.930},
+    }
+
+
+
+    var map = new google.maps.Map(document.getElementById('googleMap'), options);
+
+
+    var marker = new google.maps.Marker({
+        position: {lat: 31.963, lng: 35.930},
+        map : map,
+    });
+
+
+
+    google.maps.event.addListener(map, 'click', function( event ){
+        // alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
+        //     -22.593726063929296 , longitude: 122.27783203125
+
+        var newLocation = {lat: event.latLng.lat(), lng: event.latLng.lng()}
+        marker.setPosition(newLocation);
+    });
+
+
+
+
+    // add marker
+    /* var marker = new google.maps.Marker({
+        position: {lat: -25.344, lng: 131.036},
+        map : map,
+    });
+
+    var infoWindow = new google.maps.InfoWindow({
+        content: '<h1>Hello There</h1>'
+    });
+
+    marker.addListener('click', function(){
+        infoWindow.open( map , marker );
+    }); */
+
+  }/* /initMap() */
+
+
   $(document).ready(function(){
+
+   
+
 
     window.TRANSLATION = {
 
@@ -275,7 +348,7 @@
 
 
     $("#country_selector").countrySelect({
-      preferredCountries: ['iq'],
+      preferredCountries: ['jo'],
     });
 
     $("#country_selector").countrySelect("setCountry", '{!! (auth()->user()->country) ? auth()->user()->country : "Iraq (‫العراق‬‎)" !!}');
@@ -291,6 +364,9 @@
 
 </script>
 
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCl5BSaL_eA3VcBuWtxW7pBjkcGif-HzPk&callback=initMap"
+  type="text/javascript"></script>
 @parent
 
 @endsection

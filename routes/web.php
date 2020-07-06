@@ -16,6 +16,11 @@ Route::get('test', function () {
 
 
 
+Route::get('/map', function () {
+    return view('home');
+});
+
+
 Route::get('/lang/{lang}', 'LanguageController@setLanguage');
 Route::group(['middleware' => 'Lang' ], function(){
 
