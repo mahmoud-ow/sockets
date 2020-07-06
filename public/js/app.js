@@ -4811,8 +4811,9 @@ __webpack_require__.r(__webpack_exports__);
 
     //console.log(this.user);
     Echo["private"]("messages.".concat(this.user.id)).listen("NewMessage", function (e) {
-      _this.handleIncoming(e.message); // console.log( JSON.stringify(e.message.from_contact.id) );
+      _this.handleIncoming(e.message);
 
+      console.log(JSON.stringify(e.message));
     });
     axios.get("/contacts").then(function (response) {
       _this.contacts = response.data; //console.log( JSON.stringify(response.data) );

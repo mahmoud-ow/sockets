@@ -38,7 +38,7 @@ export default {
         Echo.private(`messages.${this.user.id}`).listen("NewMessage", e => {
             this.handleIncoming(e.message);
 
-            // console.log( JSON.stringify(e.message.from_contact.id) );
+            console.log( JSON.stringify(e.message) );
         });
 
         axios.get("/contacts").then(response => {
