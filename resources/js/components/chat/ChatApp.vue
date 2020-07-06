@@ -85,7 +85,7 @@ export default {
             // check contact existance ( add to contact list if not exist )
             var self = this;
             var found = 0;
-            var viewContact = e.message.from_contact;
+            var viewContact = message.from_contact;
             this.contacts.forEach(function(contact) {
                 if (contact.id == viewContact.id) {
                     found = 1;
