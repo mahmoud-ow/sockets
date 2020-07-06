@@ -4813,7 +4813,7 @@ __webpack_require__.r(__webpack_exports__);
     Echo["private"]("messages.".concat(this.user.id)).listen("NewMessage", function (e) {
       _this.handleIncoming(e.message);
 
-      console.log(e.from_contact.id + '/' + e.from_contact.username);
+      console.log(JSON.stringify(e)); // console.log(e.from_contact.id +'/'+ e.from_contact.username);
     });
     axios.get("/contacts").then(function (response) {
       _this.contacts = response.data; //console.log( JSON.stringify(response.data) );
