@@ -125,7 +125,7 @@ class ContactsController extends Controller
             'text' => $request->text,
         ]);
 
-        broadcast( new NewMessage($message) );
+        broadcast( new NewMessage($message, auth()->user()->id) );
 
         return response()->json($message);
     }

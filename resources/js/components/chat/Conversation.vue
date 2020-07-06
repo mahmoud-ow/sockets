@@ -65,6 +65,7 @@ export default {
     },
 
     methods: {
+
         sendMessage(text) {
             
             var self = this;
@@ -79,7 +80,10 @@ export default {
                     text: text
                 })
                 .then(response => {
-
+                    // emit the new reply
+                    this.$emit("new", response.data);
+                    
+                    // check contact existance ( add to contact list if not exist )
                     var found = 0;
                     var viewContact = this.contact;
                     this.contacts.forEach(function(contact){
@@ -91,10 +95,11 @@ export default {
                         self.contacts.unshift(viewContact);
                     }
 
-                    this.$emit("new", response.data);
 
                 });
-        },
+                /* axios */
+        },/* /sendMessage() */
+
         openContactList() {
             $(".contacts-list-wrapper").removeClass("swing-out-top-bck");
             $(".contacts-list-wrapper").addClass("swing-in-top-fwd");
