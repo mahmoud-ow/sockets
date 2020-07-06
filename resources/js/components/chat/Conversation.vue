@@ -17,9 +17,9 @@
                 </svg>
             </div>
 
-            <div>{{ contact ? contact.name : "Select a Contact" }}</div>
+            <div>{{ contact ? contact.username : "Select a Contact" }}</div>
 
-            <div>
+            <div class="close-chat-widget">
                 <svg
                     width="1em"
                     height="1em"
@@ -54,6 +54,10 @@ export default {
             type: Object,
             default: null
         },
+        contacts: {
+            type: Array,
+            default: []
+        },
         messages: {
             type: Array,
             default: []
@@ -62,6 +66,9 @@ export default {
 
     methods: {
         sendMessage(text) {
+            
+            var self = this;
+
             if (!this.contact) {
                 return;
             }
@@ -72,12 +79,28 @@ export default {
                     text: text
                 })
                 .then(response => {
+
+                    var found = 0;
+                    var viewContact = this.contact;
+                    this.contacts.forEach(function(contact){
+                        if( contact.id == viewContact.id ){
+                            found = 1;
+                        }
+                    });
+                    if( found == 0 ){
+                        self.contacts.unshift(viewContact);
+                    }
+
                     this.$emit("new", response.data);
+
                 });
         },
         openContactList() {
-            $(".contacts-list").removeClass("swing-out-top-bck");
-            $(".contacts-list").addClass("swing-in-top-fwd");
+            $(".contacts-list-wrapper").removeClass("swing-out-top-bck");
+            $(".contacts-list-wrapper").addClass("swing-in-top-fwd");
+            setTimeout(function(){
+                window.contact_list_ps.update();
+            }, 500);
         }
     },
 
@@ -101,7 +124,6 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 0;
         }
         > div:nth-of-type(1),
         > div:nth-of-type(3) {

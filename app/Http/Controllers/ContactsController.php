@@ -40,54 +40,7 @@ class ContactsController extends Controller
             }
         }
 
-        //return $fixedIds;
-
-        //return $from_ids ."<hr/>". $to_ids;
-
-        /* 
-        $valid_users = array();
-        foreach( $to_ids as $to_user ){
-            $valid_users[$to_user->rowid] = $to_user->to;
-        }
-        foreach( $from_ids as $from_user ){
-            $valid_users[$from_user->rowid] = $from_user->from;
-        }
-
-
-        $arrInd = [];
-
-        $newArray = array();
-
-        foreach( $valid_users as $key => $value ){
-
-            if( !in_array( $value, $arrInd) ){
-                $arrInd[] = $value;
-                $newArray[$key] = $value;
-            }
-
-        }
-
-
         
-        return $newArray;
-
-        $contact_list = [];
-        foreach($valid_users as $key => $value ){
-            if( !in_array( $value, $contact_list) ){
-                $contact_list[] = $value;
-            }
-        }
-  
-
-
-        return $contact_list;
-
- */
-
-
-  
-        
-
 
         // get all users except the auth()
         $contacts = User::where('id', '<>', auth()->user()->id)->whereIn('id', $fixedIds)->get();
@@ -116,13 +69,33 @@ class ContactsController extends Controller
             $contactUnread = $unreadIds->where('sender_id', $contact->id)->first();
 
             $contact->unread = $contactUnread ? $contactUnread->messages_count : 0;
-
+            // set images
+            $contact->profile_image = ( $contact->getMedia('avatar')->first() ) ? $contact->getMedia('avatar')->first()->getUrl('thumb') : 'images/dashboard/profile-default-image.png' ;
             return $contact;
         });
 
 
+        
         return response()->json($contacts);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function getMessagesFor($id){

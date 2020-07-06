@@ -3,7 +3,11 @@
 
 
 @section('header')
-
+<style>
+  #chat-widget{
+    box-shadow: 0px 0px 20px #929292a8 !important;
+  }
+</style>
 @endsection
 
 

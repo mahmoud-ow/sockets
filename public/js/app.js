@@ -4785,6 +4785,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4809,15 +4814,24 @@ __webpack_require__.r(__webpack_exports__);
       _this.handleIncoming(e.message);
     });
     axios.get("/contacts").then(function (response) {
-      _this.contacts = response.data;
+      _this.contacts = response.data; //console.log( JSON.stringify(response.data) );
+    });
+  },
+  updated: function updated() {
+    this.$nextTick(function () {
+      window.contact_list_ps = new PerfectScrollbar(".contacts-list", {
+        wheelSpeed: 2,
+        wheelPropagation: false,
+        minScrollbarLength: 20
+      });
     });
   },
   methods: {
     startConversationWith: function startConversationWith(contact) {
       var _this2 = this;
 
-      $(".contacts-list").removeClass('swing-in-top-fwd');
-      $(".contacts-list").addClass('swing-out-top-bck');
+      $(".contacts-list-wrapper").removeClass("swing-in-top-fwd");
+      $(".contacts-list-wrapper").addClass("swing-out-top-bck");
       $(".composer textarea").focus();
       this.updateUnreadCount(contact, true);
       axios.get("/conversations/".concat(contact.id)).then(function (response) {
@@ -4889,6 +4903,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -4903,6 +4929,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    viewOpenChat: function viewOpenChat(viewContact) {
+      $("#chat-widget").addClass('active-chat-widget');
+      this.selected = viewContact;
+      this.$emit("selected", viewContact);
+    },
     selectContact: function selectContact(contact) {
       this.selected = contact;
       this.$emit("selected", contact);
@@ -4920,9 +4951,7 @@ __webpack_require__.r(__webpack_exports__);
       }]);
     }
   },
-  mounted: function mounted() {
-    window.contact_list = new perfect_scrollbar__WEBPACK_IMPORTED_MODULE_0__["default"]('.contacts-list');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -4992,6 +5021,10 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       "default": null
     },
+    contacts: {
+      type: Array,
+      "default": []
+    },
     messages: {
       type: Array,
       "default": []
@@ -5001,6 +5034,8 @@ __webpack_require__.r(__webpack_exports__);
     sendMessage: function sendMessage(text) {
       var _this = this;
 
+      var self = this;
+
       if (!this.contact) {
         return;
       }
@@ -5009,12 +5044,28 @@ __webpack_require__.r(__webpack_exports__);
         contact_id: this.contact.id,
         text: text
       }).then(function (response) {
+        var found = 0;
+        var viewContact = _this.contact;
+
+        _this.contacts.forEach(function (contact) {
+          if (contact.id == viewContact.id) {
+            found = 1;
+          }
+        });
+
+        if (found == 0) {
+          self.contacts.unshift(viewContact);
+        }
+
         _this.$emit("new", response.data);
       });
     },
     openContactList: function openContactList() {
-      $(".contacts-list").removeClass("swing-out-top-bck");
-      $(".contacts-list").addClass("swing-in-top-fwd");
+      $(".contacts-list-wrapper").removeClass("swing-out-top-bck");
+      $(".contacts-list-wrapper").addClass("swing-in-top-fwd");
+      setTimeout(function () {
+        window.contact_list_ps.update();
+      }, 500);
     }
   },
   components: {
@@ -9571,7 +9622,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".chat-app[data-v-1526169d] {\n  display: flex;\n  height: 100%;\n  position: relative;\n}", ""]);
+exports.push([module.i, ".chat-app[data-v-1526169d] {\n  display: flex;\n  height: 400px;\n  position: relative;\n}", ""]);
 
 // exports
 
@@ -9590,7 +9641,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".contacts-list[data-v-7d33fe4d] {\n  transition: all 0.3s ease;\n  flex: 2;\n  max-height: 600px;\n  /*  */\n  position: absolute;\n  z-index: 1;\n  background-color: #FFF;\n  width: 100%;\n  height: 100%;\n}\n.contacts-list ul[data-v-7d33fe4d] {\n  list-style-type: none;\n  padding-left: 0;\n  margin-bottom: 0;\n}\n.contacts-list ul li[data-v-7d33fe4d] {\n  display: flex;\n  padding: 2px;\n  border-bottom: 1px solid #ddd;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-7d33fe4d] {\n  background-color: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-7d33fe4d] {\n  background-color: #82e0e8;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  justify-content: center;\n  align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul > li[data-v-7d33fe4d]:last-of-type, .contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(5) {\n  border-bottom: none;\n}\n.contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(6) {\n  border-top: 1px solid #ddd;\n}\n.contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(1), .contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(2), .contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(3), .contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(4) {\n  border-bottom: 1px solid #ddd !important;\n}\n.contacts-list ul .avatar[data-v-7d33fe4d] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\n.contacts-list ul .avatar img[data-v-7d33fe4d] {\n  width: 35px;\n  border-radius: 50px;\n  margin: 0 auto;\n}\n.contacts-list ul .contact[data-v-7d33fe4d] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.contacts-list ul .contact p[data-v-7d33fe4d] {\n  margin: 0;\n}\n.contacts-list ul .contact p.name[data-v-7d33fe4d] {\n  font-weight: bold;\n}\n@-webkit-keyframes swing-out-top-bck-data-v-7d33fe4d {\n0% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n100% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n}\n@keyframes swing-out-top-bck-data-v-7d33fe4d {\n0% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n100% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n}\n.swing-out-top-bck[data-v-7d33fe4d] {\n  -webkit-animation: swing-out-top-bck-data-v-7d33fe4d 0.45s cubic-bezier(0.6, -0.28, 0.735, 0.045) both;\n  animation: swing-out-top-bck-data-v-7d33fe4d 0.45s cubic-bezier(0.6, -0.28, 0.735, 0.045) both;\n}\n.swing-in-top-fwd[data-v-7d33fe4d] {\n  -webkit-animation: swing-in-top-fwd-data-v-7d33fe4d 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;\n  animation: swing-in-top-fwd-data-v-7d33fe4d 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;\n}\n@-webkit-keyframes swing-in-top-fwd-data-v-7d33fe4d {\n0% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n100% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n}\n@keyframes swing-in-top-fwd-data-v-7d33fe4d {\n0% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n100% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n}", ""]);
+exports.push([module.i, ".contacts-list-wrapper[data-v-7d33fe4d] {\n  position: absolute;\n  z-index: 1;\n  max-height: 600px;\n  width: 100%;\n  height: 100%;\n  padding: 0 0 2px 0;\n}\n.contacts-list[data-v-7d33fe4d] {\n  position: relative;\n  width: 100%;\n  height: calc( 100% - 40px );\n  transition: all 0.3s ease;\n  background-color: #fff;\n}\n.contacts-list ul[data-v-7d33fe4d] {\n  list-style-type: none;\n  padding-left: 0;\n  margin-bottom: 0;\n}\n.contacts-list ul li[data-v-7d33fe4d] {\n  display: flex;\n  padding: 2px;\n  border-bottom: 1px solid #ddd;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li span.unread[data-v-7d33fe4d] {\n  background-color: #82e0e8;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  justify-content: center;\n  align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul > li[data-v-7d33fe4d]:last-of-type,\n.contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(5) {\n  border-bottom: none;\n}\n.contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(6) {\n  border-top: 1px solid #ddd;\n}\n.contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(1),\n.contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(2),\n.contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(3),\n.contacts-list ul > li[data-v-7d33fe4d]:nth-of-type(4) {\n  border-bottom: 1px solid #ddd !important;\n}\n.contacts-list ul .avatar[data-v-7d33fe4d] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\n.contacts-list ul .avatar img[data-v-7d33fe4d] {\n  width: 35px;\n  border-radius: 50px;\n  margin: 0 auto;\n}\n.contacts-list ul .contact[data-v-7d33fe4d] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.contacts-list ul .contact p[data-v-7d33fe4d] {\n  margin: 0;\n}\n.contacts-list ul .contact p.name[data-v-7d33fe4d] {\n  font-weight: bold;\n}\n@-webkit-keyframes swing-out-top-bck-data-v-7d33fe4d {\n0% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n100% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n}\n@keyframes swing-out-top-bck-data-v-7d33fe4d {\n0% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n100% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n}\n.swing-out-top-bck[data-v-7d33fe4d] {\n  -webkit-animation: swing-out-top-bck-data-v-7d33fe4d 0.45s cubic-bezier(0.6, -0.28, 0.735, 0.045) both;\n  animation: swing-out-top-bck-data-v-7d33fe4d 0.45s cubic-bezier(0.6, -0.28, 0.735, 0.045) both;\n}\n.swing-in-top-fwd[data-v-7d33fe4d] {\n  -webkit-animation: swing-in-top-fwd-data-v-7d33fe4d 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;\n  animation: swing-in-top-fwd-data-v-7d33fe4d 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;\n}\n@-webkit-keyframes swing-in-top-fwd-data-v-7d33fe4d {\n0% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n100% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n}\n@keyframes swing-in-top-fwd-data-v-7d33fe4d {\n0% {\n    transform: rotateX(-100deg);\n    transform-origin: top;\n    opacity: 0;\n}\n100% {\n    transform: rotateX(0deg);\n    transform-origin: top;\n    opacity: 1;\n}\n}", ""]);
 
 // exports
 
@@ -9609,7 +9660,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".conversation[data-v-0554ee3f] {\n  flex: 5;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.conversation h1[data-v-0554ee3f] {\n  margin: 0;\n  border-bottom: 1px dashed lightgray;\n  display: flex;\n}\n.conversation h1 > div[data-v-0554ee3f] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding: 10px 0;\n}\n.conversation h1 > div[data-v-0554ee3f]:nth-of-type(1),\n.conversation h1 > div[data-v-0554ee3f]:nth-of-type(3) {\n  width: 40px;\n  font-size: 22px;\n  cursor: pointer;\n}\n.conversation h1 > div[data-v-0554ee3f]:nth-of-type(2) {\n  width: 220px;\n  font-size: 15px;\n}", ""]);
+exports.push([module.i, ".conversation[data-v-0554ee3f] {\n  flex: 5;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.conversation h1[data-v-0554ee3f] {\n  margin: 0;\n  border-bottom: 1px dashed lightgray;\n  display: flex;\n}\n.conversation h1 > div[data-v-0554ee3f] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.conversation h1 > div[data-v-0554ee3f]:nth-of-type(1),\n.conversation h1 > div[data-v-0554ee3f]:nth-of-type(3) {\n  width: 40px;\n  font-size: 22px;\n  cursor: pointer;\n}\n.conversation h1 > div[data-v-0554ee3f]:nth-of-type(2) {\n  width: 220px;\n  font-size: 15px;\n}", ""]);
 
 // exports
 
@@ -54414,11 +54465,16 @@ var render = function() {
     { staticClass: "chat-app" },
     [
       _c("Conversation", {
-        attrs: { contact: _vm.selectedContact, messages: _vm.messages },
+        attrs: {
+          contact: _vm.selectedContact,
+          messages: _vm.messages,
+          contacts: _vm.contacts
+        },
         on: { new: _vm.saveNewMessage }
       }),
       _vm._v(" "),
       _c("ContactsList", {
+        ref: "form",
         attrs: { contacts: _vm.contacts },
         on: { selected: _vm.startConversationWith }
       })
@@ -54448,47 +54504,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "contacts-list" }, [
-    _c(
-      "ul",
-      _vm._l(_vm.contacts, function(contact) {
-        return _c(
-          "li",
-          {
-            key: contact.id,
-            class: { selected: contact == _vm.selected },
-            on: {
-              click: function($event) {
-                return _vm.selectContact(contact)
+  return _c("div", { staticClass: "contacts-list-wrapper" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "contacts-list" }, [
+      _c(
+        "ul",
+        _vm._l(_vm.contacts, function(contact) {
+          return _c(
+            "li",
+            {
+              key: contact.id,
+              class: { selected: contact == _vm.selected },
+              on: {
+                click: function($event) {
+                  return _vm.selectContact(contact)
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "avatar" }, [
-              _c("img", {
-                attrs: { src: contact.profile_image, alt: contact.name }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "contact" }, [
-              _c("p", { staticClass: "name" }, [_vm._v(_vm._s(contact.name))]),
+            },
+            [
+              _c("div", { staticClass: "avatar" }, [
+                _c("img", {
+                  staticClass: "chat-widget-contact-list-profile-picture",
+                  attrs: { src: contact.profile_image, alt: contact.name }
+                })
+              ]),
               _vm._v(" "),
-              _c("p", { staticClass: "email" }, [_vm._v(_vm._s(contact.email))])
-            ]),
-            _vm._v(" "),
-            contact.unread
-              ? _c("span", { staticClass: "unread" }, [
-                  _vm._v(_vm._s(contact.unread) + "\n            ")
+              _c("div", { staticClass: "contact" }, [
+                _c("p", { staticClass: "name" }, [
+                  _vm._v(_vm._s(contact.username))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "email" }, [
+                  _vm._v(_vm._s(contact.email))
                 ])
-              : _vm._e()
-          ]
-        )
-      }),
-      0
-    )
+              ]),
+              _vm._v(" "),
+              contact.unread
+                ? _c("span", { staticClass: "unread" }, [
+                    _vm._v(_vm._s(contact.unread) + "\n                ")
+                  ])
+                : _vm._e()
+            ]
+          )
+        }),
+        0
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "contacts-list-header" }, [
+      _c("div", [_vm._v("المحادثات")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "close-chat-widget" }, [
+        _c("span", { staticClass: "sl-icon icon-close" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -54551,10 +54629,12 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", [
-          _vm._v(_vm._s(_vm.contact ? _vm.contact.name : "Select a Contact"))
+          _vm._v(
+            _vm._s(_vm.contact ? _vm.contact.username : "Select a Contact")
+          )
         ]),
         _vm._v(" "),
-        _c("div", [
+        _c("div", { staticClass: "close-chat-widget" }, [
           _c(
             "svg",
             {
@@ -66903,7 +66983,7 @@ Vue.component('chat-app', __webpack_require__(/*! ./components/chat/ChatApp.vue 
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
+window.App = new Vue({
   el: '#app'
 });
 window.Toast = Swal.mixin({

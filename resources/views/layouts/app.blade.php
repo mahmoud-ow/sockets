@@ -19,8 +19,8 @@
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
-    {{-- <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css"> --}}
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css">
 
     @yield('header')
     
@@ -34,8 +34,9 @@
         @yield('body')
 
         @if(auth()->check())
+        <div id="chat-widget-toggle"><span class="sl-icon icon-bubbles"></span></div>
         <div id="chat-widget">
-            <chat-app :user="{{auth()->user()}}"></chat-app>
+            <chat-app :user="{{auth()->user()}}" ref="ChatApp"></chat-app>
         </div>
         <!-- /#chat-widget -->
         @endif
@@ -56,6 +57,15 @@
         
         
         $(document).ready(function(){
+            $("#chat-widget-toggle").click(function(){
+                $("#chat-widget").addClass('active-chat-widget');
+            });
+            $(".close-chat-widget").click(function(){
+                $("#chat-widget").removeClass('active-chat-widget');
+            });
+
+
+
 
         });/* /ready() */
 

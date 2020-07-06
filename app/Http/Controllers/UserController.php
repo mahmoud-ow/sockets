@@ -13,8 +13,18 @@ class UserController extends Controller
     public function usersView(Request $request){
         return view('/dashboards.admin.users');
     }
+
+
     public function usersData(Request $request){
         $users = User::where('email', '<>', 'admin@admin.com')->get();
+
+        // add an unread key to each contact with the count of unread messages
+        $users = $users->map(function($contact) {
+            // set images
+            $contact->profile_image =  ( $contact->getMedia('avatar')->first() ) ? $contact->getMedia('avatar')->first()->getUrl('thumb') : 'images/dashboard/profile-default-image.png' ;
+            return $contact;
+        });
+
         return \Response::json( ['data' => $users] );
                 /* if($request->source){
         } */

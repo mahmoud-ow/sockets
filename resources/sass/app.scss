@@ -14,6 +14,29 @@ body{
   padding: 0 !important;
 }
 // chat
+#chat-widget-toggle{
+  position: fixed;
+  bottom: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: #1396e1;
+  color: #FFF;
+  z-index: 998;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px #000000a3;
+}
+[dir='ltr'] #chat-widget-toggle{
+  right: 10px;
+}
+[dir='rtl'] #chat-widget-toggle{
+  left: 10px;
+}
+
 #chat-widget {
   position: fixed;
   bottom: 20px;
@@ -25,15 +48,94 @@ body{
   box-shadow: 0px 0px 20px #9292923b;
   background-color: #fff;
   z-index: 999;
+  opacity: 0.5;
+  transition: all 0.3s ease;
   // border: 1px solid #38c17275;
 }
-
 [dir='ltr'] #chat-widget{
   right: 20px;
+  transform: translate3d( 300px, 0px , 0);
 }
 [dir='rtl'] #chat-widget{
   left: 20px;
+  transform: translate3d( -340px, 0px , 0);
 }
+.active-chat-widget{
+  transform: translate3d( 0, 0 , 0) !important;
+  opacity: 1 !important;
+}
+
+
+[dir='ltr'] .contacts-list{
+  padding: 2px 0px 2px 5px;
+}
+[dir='rtl'] .contacts-list{
+  padding: 2px 5px 2px 0;
+}
+
+
+.contacts-list-header{
+  display: flex;
+  border-bottom: 1px solid #DDD;
+  color: white;
+  align-items: center;
+  background-color: #535d5f;
+}
+
+.contacts-list-header > div{
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.contacts-list-header > div:nth-of-type(1){
+  width: 100%;
+}
+.contacts-list-header > div:nth-of-type(2){
+  width: 40px;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+
+#chat-widget h1{
+  color: #111;
+}
+
+#chat-widget textarea{
+  min-height: 40px;
+  padding: 5px;
+}
+#chat-widget .name{
+  font-size: 16px;
+  text-transform: capitalize;
+}
+#chat-widget .email{
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.chat-widget-contact-list-profile-picture{
+  width: 70% !important;
+  height: 70%;
+  object-fit: cover;
+}
+
+.ps__rail-y {
+  opacity: 1 !important;
+  background-color: #fff !important;
+}
+[dir='rtl'] .ps__thumb-y{
+  left: 2px !important;
+  right: auto !important;
+}
+/* [dir="rtl"] .ps__thumb-y {
+  left: 2px !important;
+  right: auto !important;
+} */
+
 
 // swal
 .swal2-validation-message{

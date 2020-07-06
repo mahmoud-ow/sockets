@@ -4,8 +4,13 @@
             :contact="selectedContact"
             :messages="messages"
             @new="saveNewMessage"
+            :contacts="contacts"
         />
-        <ContactsList :contacts="contacts" @selected="startConversationWith" />
+        <ContactsList
+            :contacts="contacts"
+            @selected="startConversationWith"
+            ref="form"
+        />
     </div>
 </template>
 
@@ -36,19 +41,23 @@ export default {
 
         axios.get("/contacts").then(response => {
             this.contacts = response.data;
+            //console.log( JSON.stringify(response.data) );
         });
-
-        
+    },
+    updated: function() {
+        this.$nextTick(function() {
+            window.contact_list_ps = new PerfectScrollbar(".contacts-list", {
+                wheelSpeed: 2,
+                wheelPropagation: false,
+                minScrollbarLength: 20
+            });
+        });
     },
     methods: {
         startConversationWith(contact) {
-
-           
-
-            $(".contacts-list").removeClass('swing-in-top-fwd');
-            $(".contacts-list").addClass('swing-out-top-bck');
+            $(".contacts-list-wrapper").removeClass("swing-in-top-fwd");
+            $(".contacts-list-wrapper").addClass("swing-out-top-bck");
             $(".composer textarea").focus();
-            
 
             this.updateUnreadCount(contact, true);
 
@@ -73,16 +82,14 @@ export default {
             this.updateUnreadCount(message.from_contact, false);
         },
         updateUnreadCount(contact, reset) {
-            this.contacts = this.contacts.map((single) => {
+            this.contacts = this.contacts.map(single => {
                 if (single.id !== contact.id) {
                     return single;
                 }
-                if (reset)
-                    single.unread = 0;
-                else
-                    single.unread += 1;
+                if (reset) single.unread = 0;
+                else single.unread += 1;
                 return single;
-            })
+            });
         }
     },
     components: { Conversation, ContactsList }
@@ -92,7 +99,7 @@ export default {
 <style lang="scss" scoped>
 .chat-app {
     display: flex;
-    height: 100%;
+    height: 400px;
     position: relative;
 }
 </style>

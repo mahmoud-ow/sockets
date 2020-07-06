@@ -104,6 +104,8 @@
 <script>
   $(document).ready(function(){
     
+    
+
     window.TRANSLATION = {
 
       language : "{!! \App::getLocale() !!}",
@@ -186,17 +188,20 @@
               sortable: false,
               className: "tabel-actions",
               "render": function ( data, type, full, meta ) {
-                  return `
-                  <button class="dt-btn dt-btn-chat" onclick="window.deleteNotification('`+full.notification_token+`')">
-                    <svg><use xlink:href="#msg-icon"></use></svg> 
-                  </button>
-                  <button class="dt-btn dt-btn-success" onclick="window.editNotification('`+full.notification_token+`')">
-                    <svg><use xlink:href="#user-icon"></use></svg> 
-                  </button>
-                  <button class="dt-btn dt-btn-danger" onclick="deleteUser('`+full.id+`')">
-                    <svg><use xlink:href="#delete-icon"></use></svg> 
-                  </button>
-                  `;
+
+                
+                var newContact = {name: 'mahmoud', age: 18};
+                return `
+                <button class="dt-btn dt-btn-chat" onclick='window.App.$refs.ChatApp.$refs.form.viewOpenChat(`+ JSON.stringify(full) +`)'>
+                  <svg><use xlink:href="#msg-icon"></use></svg> 
+                </button>
+                <button class="dt-btn dt-btn-success" onclick="window.editNotification('`+full.notification_token+`')">
+                  <svg><use xlink:href="#user-icon"></use></svg> 
+                </button>
+                <button class="dt-btn dt-btn-danger" onclick="deleteUser('`+full.id+`')">
+                  <svg><use xlink:href="#delete-icon"></use></svg> 
+                </button>
+                `;
                   
 
               }
@@ -206,6 +211,7 @@
           "order": [[0, 'desc']],
           "deferRender": true,
           "initComplete": function () {
+
           },
         });
 

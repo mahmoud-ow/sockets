@@ -27,7 +27,7 @@ Vue.component('chat-app', require('./components/chat/ChatApp.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+window.App = new Vue({
     el: '#app',
 });
 
