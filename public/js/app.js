@@ -4848,9 +4848,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.selectedContact && message.from == this.selectedContact.id) {
         this.saveNewMessage(message);
         return;
-      }
-
-      this.updateUnreadCount(message.from_contact, false); // check contact existance ( add to contact list if not exist )
+      } //this.updateUnreadCount(message.from_contact, false);
+      // check contact existance ( add to contact list if not exist )
 
       /* var self = this;
       var found = 0;
@@ -4863,6 +4862,7 @@ __webpack_require__.r(__webpack_exports__);
       if (found == 0) {
           self.contacts.unshift(viewContact);
       } */
+
     },
     updateUnreadCount: function updateUnreadCount(contact, reset) {
       this.contacts = this.contacts.map(function (single) {

@@ -81,7 +81,7 @@ export default {
                 return;
             }
 
-            this.updateUnreadCount(message.from_contact, false);
+            //this.updateUnreadCount(message.from_contact, false);
             // check contact existance ( add to contact list if not exist )
             /* var self = this;
             var found = 0;
