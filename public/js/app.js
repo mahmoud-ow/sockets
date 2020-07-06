@@ -4862,6 +4862,7 @@ __webpack_require__.r(__webpack_exports__);
       });
 
       if (found == 0) {
+        viewContact.unread = 1;
         self.contacts.unshift(viewContact);
       }
     },

@@ -62,6 +62,7 @@ export default {
             $(".composer textarea").focus();
 
             this.updateUnreadCount(contact, true);
+            
 
             axios.get(`/conversations/${contact.id}`).then(response => {
                 this.messages = response.data;
@@ -92,11 +93,14 @@ export default {
                 }
             });
             if (found == 0) {
+                viewContact.unread = 1;
                 self.contacts.unshift(viewContact);
             }
 
         },
         updateUnreadCount(contact, reset) {
+            
+            
             this.contacts = this.contacts.map(single => {
                 if (single.id !== contact.id) {
                     return single;
