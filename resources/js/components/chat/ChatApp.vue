@@ -38,7 +38,7 @@ export default {
         Echo.private(`messages.${this.user.id}`).listen("NewMessage", e => {
             this.handleIncoming(e.message);
 
-            console.log( JSON.stringify(e.message) );
+            console.log( JSON.stringify(e) );
         });
 
         axios.get("/contacts").then(response => {
@@ -83,7 +83,7 @@ export default {
 
             this.updateUnreadCount(message.from_contact, false);
             // check contact existance ( add to contact list if not exist )
-            var self = this;
+            /* var self = this;
             var found = 0;
             var viewContact = message.from_contact;
             this.contacts.forEach(function(contact) {
@@ -93,7 +93,7 @@ export default {
             });
             if (found == 0) {
                 self.contacts.unshift(viewContact);
-            }
+            } */
 
         },
         updateUnreadCount(contact, reset) {
