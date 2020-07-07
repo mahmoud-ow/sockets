@@ -25,6 +25,9 @@ Route::get('/lang/{lang}', 'LanguageController@setLanguage');
 Route::group(['middleware' => 'Lang' ], function(){
 
 
+    Route::post('/locations', 'LocationController@addLocation');
+    Route::delete('/locations/{markerId}', 'LocationController@deleteAccountLocation');
+
     
 
     Route::get('/', function () {

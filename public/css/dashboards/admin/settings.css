@@ -4,6 +4,52 @@
   direction: ltr;
 }
 
+.marker-label {
+  background-color: red !important;
+  font-size: 28px !important;
+}
+
+#manual_description {
+  width: 100% !important;
+  min-height: 40px !important;
+  border: 1px solid #ebebeb !important;
+  padding: 14px 12px !important;
+  height: 80px !important;
+}
+
+.gm-style-iw-d {
+  overflow: hidden !important;
+}
+
+.gm-style-iw {
+  padding: 10px !important;
+  width: 300px;
+}
+
+#saveMarkerInput, #deleteLocationInput {
+  font-size: 15px;
+  padding: 2px 5px;
+  background-color: #00d7b3;
+  color: #FFF;
+  box-shadow: 0px 0px 3px #3c3c3cb0;
+  margin: 5px 2px;
+}
+
+#deleteLocationInput {
+  background-color: salmon !important;
+  margin: 0 10px;
+}
+
+.gm-ui-hover-effect {
+  bottom: 12px !important;
+  left: 10px !important;
+  border-radius: 50% !important;
+  box-shadow: 0px 0px 3px grey;
+  top: auto !important;
+  right: auto !important;
+  background-color: #ea4335 !important;
+}
+
 #swal2-content {
   width: 100%;
 }

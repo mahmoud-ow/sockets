@@ -41,7 +41,8 @@ class DashBoardController extends Controller
 
 
     public static function adminDashboard(){
-        return view('dashboards.admin.settings');
+        $locations = \App\Location::where('user_id', auth()->id())->get();
+        return view('dashboards.admin.settings', compact('locations'));
     }/* /adminDashboard() */
 
     

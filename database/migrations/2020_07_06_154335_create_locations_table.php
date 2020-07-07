@@ -18,8 +18,8 @@ class CreateLocationsTable extends Migration
 
             $table->id();
             $table->integer('user_id');
-            $table->decimal('long', 10, 7);
-            $table->decimal('lat', 10, 7);
+            $table->decimal('long', 11, 8);
+            $table->decimal('lat', 10, 8);
             $table->longText('description');
             $table->integer('status')->default(1);
 
