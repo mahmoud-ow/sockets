@@ -26,13 +26,13 @@
 
 
 
-  @include('/dashboards.admin.side_menu')
+  @include('/dashboards.buyer.side_menu')
 
   <!-- DASHBOARD BODY -->
   <div class="dashboard-body">
 
 
-    @include('/dashboards.admin.header')
+    @include('/dashboards.buyer.header')
 
 
     <!-- DASHBOARD CONTENT -->
@@ -421,6 +421,10 @@
 
         if (response.data.error == 0) {
 
+          var markerId = lat + '_' + lng;
+          var marker = markers[markerId];
+          window.removeMarker(marker, markerId);
+
 
           locations.forEach(function(el){
             var markerId = el.lat + '_' + el.lng;
@@ -429,10 +433,7 @@
           });
 
 
-          var markerId = lat + '_' + lng;
-          var marker = markers[markerId];
-          window.removeMarker(marker, markerId);
-
+          
 
           console.log( JSON.stringify(response.data.locations) );
           locations = response.data.locations;
@@ -593,9 +594,7 @@
 
   
   window.translation = {
-
     'please_choose_image': "{!! __('dashboard.please_choose_image') !!} ",
-
   };
 
 

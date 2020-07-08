@@ -401,10 +401,10 @@
 
 
     /**
-   * SAVE save marker from map.
-   * @param lat  A latitude of marker.
-   * @param lng A longitude of marker.
-   */
+    * SAVE save marker from map.
+    * @param lat  A latitude of marker.
+    * @param lng A longitude of marker.
+    */
     window.saveData = function (lat,lng) {
 
     // get description
@@ -419,6 +419,10 @@
 
         if (response.data.error == 0) {
 
+          var markerId = lat + '_' + lng;
+          var marker = markers[markerId];
+          window.removeMarker(marker, markerId);
+
 
           locations.forEach(function(el){
             var markerId = el.lat + '_' + el.lng;
@@ -427,10 +431,7 @@
           });
 
 
-          var markerId = lat + '_' + lng;
-          var marker = markers[markerId];
-          window.removeMarker(marker, markerId);
-
+          
 
           console.log( JSON.stringify(response.data.locations) );
           locations = response.data.locations;
