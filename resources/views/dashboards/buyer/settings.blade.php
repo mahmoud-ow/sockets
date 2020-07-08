@@ -444,6 +444,12 @@
             var markerId = lat + '_' + lng; // an that will be used to cache this marker in markers object.
             var marker = new google.maps.Marker({
                 position:  new google.maps.LatLng(lat, lng),
+                label: {
+                  color: '#FFF',
+                  fontWeight: 'bold',
+                  fontSize: "20px",
+                  text: location.description,
+                },
                 map: map,
                 icon : purple_icon,
                 animation: google.maps.Animation.DROP,
