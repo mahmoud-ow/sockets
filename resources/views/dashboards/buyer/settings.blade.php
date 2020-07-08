@@ -284,10 +284,11 @@
   type='text/javascript'></script>
 
 <script>
-  function initMap(){
-            
+  
+  
 
-    
+
+  function initMap(){
     var infowindow;
     var map;
     var red_icon =  'http://maps.google.com/mapfiles/ms/icons/red-dot.png' ;
@@ -403,11 +404,11 @@
 
 
     /**
-   * SAVE save marker from map.
-   * @param lat  A latitude of marker.
-   * @param lng A longitude of marker.
-   */
-   window.saveData = function (lat,lng) {
+    * SAVE save marker from map.
+    * @param lat  A latitude of marker.
+    * @param lng A longitude of marker.
+    */
+    window.saveData = function (lat,lng) {
 
     // get description
     var description = document.getElementById('manual_description').value;
@@ -488,13 +489,6 @@
 
 
 
-
-
-
-
-
-
-
     var locations = {!! $locations !!};
     
     console.log(locations);
@@ -506,6 +500,12 @@
       var markerId = lat + '_' + lng; // an that will be used to cache this marker in markers object.
       var marker = new google.maps.Marker({
           position:  new google.maps.LatLng(lat, lng),
+          label: {
+            color: '#FFF',
+            fontWeight: 'bold',
+            fontSize: "20px",
+            text: location.description,
+          },
           map: map,
           icon :  purple_icon,
           animation: google.maps.Animation.DROP,
@@ -530,18 +530,10 @@
         var lng = lng;
         var markerId = lat + '_' + lng;
         var marker = markers[markerId]; // find marker
-        
 
-        axios.delete('/locations/' + markerId, {
-          params: { 
-            lat : lat,
-            lng: lng,  
-          }
-          
-        })
-          .then(function (response) {
+        axios.delete('/locations/' + markerId, { data: { lat: lat, lng:lng } }).then(function (response) {
 
-            console.log(JSON.stringify(response.data.location));
+            console.log(JSON.stringify(response.data));
             
             if (response.data.error == 0) {
 

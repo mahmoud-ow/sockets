@@ -285,6 +285,10 @@
 
 
 <script>
+  
+  
+
+
   function initMap(){
     var infowindow;
     var map;
@@ -486,13 +490,6 @@
 
 
 
-
-
-
-
-
-
-
     var locations = {!! $locations !!};
     
     console.log(locations);
@@ -528,19 +525,10 @@
         var lng = lng;
         var markerId = lat + '_' + lng;
         var marker = markers[markerId]; // find marker
-        
-        alert(lng);
 
-        axios.delete('/locations/' + markerId, {
-          params: { 
-            lat : lat,
-            lng: lng,  
-          }
-          
-        })
-          .then(function (response) {
+        axios.delete('/locations/' + markerId, { data: { lat: lat, lng:lng } }).then(function (response) {
 
-            console.log(JSON.stringify(response.data.location));
+            console.log(JSON.stringify(response.data));
             
             if (response.data.error == 0) {
 
