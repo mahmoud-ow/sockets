@@ -48,7 +48,7 @@ class LocationController extends Controller
 
 
     public function deleteAccountLocation(Request $request){
-       
+        $name = 'mahmoud';
         $lat = $request->lat;
         $lng = $request->lng;
         $info = $lat .":".$lng;
