@@ -49,12 +49,11 @@ class LocationController extends Controller
 
     public function deleteAccountLocation(Request $request){
        
-       $lat = $request->lat;
-       $lng = $request->lng;
-
-
+        $lat = $request->lat;
+        $lng = $request->lng;
+        $info = $lat .":".$lng;
         $deleteLocation = Location::where('user_id', auth()->id())->where('lat', $lat)->where('lng', $lng)->delete();
-        return response()->json([ 'error' => 0, 'message' => trans('dashboard.deleted_successfully') ]);
+        return response()->json([ 'error' => 0, 'message' => trans('dashboard.deleted_successfully'), 'location' => $info ]);
 
     }
 
