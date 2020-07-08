@@ -529,6 +529,7 @@
         var markerId = lat + '_' + lng;
         var marker = markers[markerId]; // find marker
         
+        alert(lng);
 
         axios.delete('/locations/' + markerId, {
           params: { 
