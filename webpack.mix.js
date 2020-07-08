@@ -17,7 +17,9 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/pages/auth_pages.scss', 'public/css/pages')
     
     
-    // dashboards ( admin )
+    // dashboards
+    .js('resources/js/dashboards/maps.js', 'public/js/dashboards')
+
     .js('resources/js/dashboards/admin/settings.js', 'public/js/dashboards/admin')
     .sass('resources/sass/dashboards/admin/settings.scss', 'public/css/dashboards/admin')
     .sass('resources/sass/dashboards/dashboards.scss', 'public/css/dashboards/')

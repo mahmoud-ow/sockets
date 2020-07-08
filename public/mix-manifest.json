@@ -4,5 +4,6 @@
     "/css/pages/auth_pages.css": "/css/pages/auth_pages.css",
     "/css/dashboards/admin/settings.css": "/css/dashboards/admin/settings.css",
     "/css/dashboards/dashboards.css": "/css/dashboards/dashboards.css",
-    "/js/dashboards/admin/settings.js": "/js/dashboards/admin/settings.js"
+    "/js/dashboards/admin/settings.js": "/js/dashboards/admin/settings.js",
+    "/js/dashboards/maps.js": "/js/dashboards/maps.js"
 }

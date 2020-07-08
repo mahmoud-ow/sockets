@@ -285,13 +285,7 @@
 
 
 <script>
-  
-
-
-
-
   function initMap(){
-            
     var infowindow;
     var map;
     var red_icon =  'http://maps.google.com/mapfiles/ms/icons/red-dot.png' ;
@@ -299,7 +293,7 @@
     var locations = [];
     var myOptions = {
         zoom: 7,
-        center: new google.maps.LatLng(46.87916, -3.32910),
+        center: new google.maps.LatLng(30.5852, 36.2384),
         mapTypeId: 'roadmap'
     };
     map = new google.maps.Map(document.getElementById('googleMap'), myOptions);
@@ -425,9 +419,6 @@
 
         if (response.data.error == 0) {
 
-          var markerId = lat + '_' + lng;
-          var marker = markers[markerId];
-          window.removeMarker(marker, markerId);
 
           locations.forEach(function(el){
             var markerId = el.lat + '_' + el.lng;
@@ -436,14 +427,21 @@
           });
 
 
-          response.data.locations.forEach(function(location){
+          var markerId = lat + '_' + lng;
+          var marker = markers[markerId];
+          window.removeMarker(marker, markerId);
+
+
+          console.log( JSON.stringify(response.data.locations) );
+          locations = response.data.locations;
+          locations.forEach(function(location){
             var lat = location.lat; // lat of clicked point
             var lng = location.lng; // lng of clicked point
             var markerId = lat + '_' + lng; // an that will be used to cache this marker in markers object.
             var marker = new google.maps.Marker({
                 position:  new google.maps.LatLng(lat, lng),
                 map: map,
-                icon :   locations[i][4] === '1' ?  red_icon  : purple_icon,
+                icon : purple_icon,
                 animation: google.maps.Animation.DROP,
                 id: 'marker_' + markerId,
                 html: "    <div id='info_"+markerId+"'>\n" +
@@ -506,7 +504,7 @@
       var marker = new google.maps.Marker({
           position:  new google.maps.LatLng(lat, lng),
           map: map,
-          icon :   locations[i][4] === '1' ?  red_icon  : purple_icon,
+          icon :  purple_icon,
           animation: google.maps.Animation.DROP,
           id: 'marker_' + markerId,
           html: "    <div id='info_"+markerId+"'>\n" +
@@ -565,8 +563,6 @@
     }
 
   }/* /initMap() */
-
-
 
 
 
