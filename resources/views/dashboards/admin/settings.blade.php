@@ -285,18 +285,13 @@
 
 
 <script>
+  
+
+
+
+
   function initMap(){
             
-            
-   /*  var options = {
-        zoom   : 5,
-        center : {lat: 31.963, lng: 35.930},
-    }
-    var map = new google.maps.Map(document.getElementById('googleMap'), options);
- */
-
-    
-    
     var infowindow;
     var map;
     var red_icon =  'http://maps.google.com/mapfiles/ms/icons/red-dot.png' ;
@@ -349,10 +344,12 @@
     var bindMarkerinfo = function(marker) {
       google.maps.event.addListener(marker, "click", function (point) {
         var markerId = getMarkerUniqueId(point.latLng.lat(), point.latLng.lng()); // get marker id by using clicked point's coordinate
+        //console.log(markerId);
         var marker = markers[markerId]; // find marker
         infowindow = new google.maps.InfoWindow();
         infowindow.setContent(marker.html);
         infowindow.open(map, marker);
+        
         // window.removeMarker(marker, markerId); // remove it
       });
     };
@@ -414,13 +411,10 @@
    * @param lat  A latitude of marker.
    * @param lng A longitude of marker.
    */
-   window.saveData = function (lat,lng) {
+    window.saveData = function (lat,lng) {
 
-    
     // get description
     var description = document.getElementById('manual_description').value;
-    // alert(lat + ":" + lng);
-
 
     axios.post('/locations/', {
       lat: lat,
@@ -429,45 +423,66 @@
     })
       .then(function (response) {
 
-        
-
         if (response.data.error == 0) {
 
+          var markerId = lat + '_' + lng;
+          var marker = markers[markerId];
+          window.removeMarker(marker, markerId);
 
-          var markerId = getMarkerUniqueId(lat,lng); // get marker id by using clicked point's coordinate
-          var manual_marker = markers[markerId]; // find marker
-          manual_marker.setIcon(purple_icon);
-          infowindow.close();
-          infowindow.setContent("<div style=' color: #06b99b; font-size: 20px;'> تم إضافة المكان بنجاح</div>");
-          infowindow.open(map, manual_marker);
+          locations.forEach(function(el){
+            var markerId = el.lat + '_' + el.lng;
+            var marker = markers[markerId];
+            window.removeMarker(marker, markerId); // remove it
+          });
+
+
+          response.data.locations.forEach(function(location){
+            var lat = location.lat; // lat of clicked point
+            var lng = location.lng; // lng of clicked point
+            var markerId = lat + '_' + lng; // an that will be used to cache this marker in markers object.
+            var marker = new google.maps.Marker({
+                position:  new google.maps.LatLng(lat, lng),
+                map: map,
+                icon :   locations[i][4] === '1' ?  red_icon  : purple_icon,
+                animation: google.maps.Animation.DROP,
+                id: 'marker_' + markerId,
+                html: "    <div id='info_"+markerId+"'>\n" +
+                "        <div class=\"map1\">\n" +        
+                "                 <textarea  id='manual_description' placeholder='قم بكتابة وصف للمكان هنا'>"+location.description+"</textarea>\n" +
+                "                 <button type='button' id='deleteLocationInput' onclick='window.deleteLoction( "+lat+" , "+lng+")'>حذف</button>" +
+                "        </div>\n" +
+                "    </div>"
+            });
+            markers[markerId] = marker; // cache marker in markers object
+            bindMarkerEvents(marker); // bind right click event to marker
+            bindMarkerinfo(marker); // bind infowindow with click event to marker "+location.id+"
+          });
+
+          window.Toast.fire({
+            icon: 'success',
+            title: response.data.message
+          });
 
         } else {
-
-    
           infowindow.setContent("<div style='color: red; font-size: 25px;'>Inserting Errors</div>");
-
         }
-
       });
+    }
 
+    function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
 
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                callback(request.responseText, request.status);
+            }
+        };
 
-  }
-
-  function downloadUrl(url, callback) {
-      var request = window.ActiveXObject ?
-          new ActiveXObject('Microsoft.XMLHTTP') :
-          new XMLHttpRequest;
-
-      request.onreadystatechange = function() {
-          if (request.readyState == 4) {
-              callback(request.responseText, request.status);
-          }
-      };
-
-      request.open('GET', url, true);
-      request.send(null);
-  }
+        request.open('GET', url, true);
+        request.send(null);
+    }
 
 
 
@@ -481,9 +496,12 @@
 
     var locations = {!! $locations !!};
     
+    console.log(locations);
+    
+
     locations.forEach(function(location){
       var lat = location.lat; // lat of clicked point
-      var lng = location.long; // lng of clicked point
+      var lng = location.lng; // lng of clicked point
       var markerId = lat + '_' + lng; // an that will be used to cache this marker in markers object.
       var marker = new google.maps.Marker({
           position:  new google.maps.LatLng(lat, lng),
@@ -546,66 +564,12 @@
 
     }
 
-
-   /*  var marker = new google.maps.Marker({
-        position: {lat: 31.963, lng: 35.930},
-        map : map,
-    });
-    
-    var marker2 = new google.maps.Marker({
-        position: {lat: 30.963, lng: 35.930},
-        map : map,
-    }); */
-
-/* 
-    function addMarker(coordinate){
-
-      new google.maps.Marker({
-        position: coordinate,
-        map : map,
-        label: {
-          text: "$300k",
-          color: "#FFF",
-          fontSize: "30px",
-          fontWeight: "bold",
-        },
-        labelClass: "marker-label",
-        title: "Hello World!",
-        visible: true
-      });
-
-    }
-     */
-    /* /addMarker() */
-    /* addMarker({lat: 26.8206, lng: 30.8025});
-
-    google.maps.event.addListener(map, 'click', function( event ){
-        // alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
-        //     -22.593726063929296 , longitude: 122.27783203125
-
-        var newLocation = {lat: event.latLng.lat(), lng: event.latLng.lng()}
-        addMarker(newLocation);
-        //marker.setPosition(newLocation);
-    });
- */
-
-
-
-    // add marker
-    /* var marker = new google.maps.Marker({
-        position: {lat: -25.344, lng: 131.036},
-        map : map,
-    });
-
-    var infoWindow = new google.maps.InfoWindow({
-        content: '<h1>Hello There</h1>'
-    });
-
-    marker.addListener('click', function(){
-        infoWindow.open( map , marker );
-    }); */
-
   }/* /initMap() */
+
+
+
+
+
 
 
 

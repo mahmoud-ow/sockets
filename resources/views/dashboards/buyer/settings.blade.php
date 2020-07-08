@@ -287,15 +287,7 @@
 <script>
   function initMap(){
             
-            
-   /*  var options = {
-        zoom   : 5,
-        center : {lat: 31.963, lng: 35.930},
-    }
-    var map = new google.maps.Map(document.getElementById('googleMap'), options);
- */
 
-    
     
     var infowindow;
     var map;
@@ -466,35 +458,28 @@
           window.Toast.fire({
             icon: 'success',
             title: response.data.message
-          })
-
-          /* var markerId = getMarkerUniqueId(lat,lng); // get marker id by using clicked point's coordinate
-          var manual_marker = markers[markerId]; // find marker
-          manual_marker.setIcon(purple_icon);
-          infowindow.close();
-          infowindow.setContent("<div style=' color: #06b99b; font-size: 20px;'>تم حفظ البيانات</div>");
-          infowindow.open(map, manual_marker); */
+          });
 
         } else {
           infowindow.setContent("<div style='color: red; font-size: 25px;'>Inserting Errors</div>");
         }
       });
-  }
+    }
 
-  function downloadUrl(url, callback) {
-      var request = window.ActiveXObject ?
-          new ActiveXObject('Microsoft.XMLHTTP') :
-          new XMLHttpRequest;
+    function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
 
-      request.onreadystatechange = function() {
-          if (request.readyState == 4) {
-              callback(request.responseText, request.status);
-          }
-      };
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                callback(request.responseText, request.status);
+            }
+        };
 
-      request.open('GET', url, true);
-      request.send(null);
-  }
+        request.open('GET', url, true);
+        request.send(null);
+    }
 
 
 
@@ -575,65 +560,6 @@
           });
 
     }
-
-
-   /*  var marker = new google.maps.Marker({
-        position: {lat: 31.963, lng: 35.930},
-        map : map,
-    });
-    
-    var marker2 = new google.maps.Marker({
-        position: {lat: 30.963, lng: 35.930},
-        map : map,
-    }); */
-
-/* 
-    function addMarker(coordinate){
-
-      new google.maps.Marker({
-        position: coordinate,
-        map : map,
-        label: {
-          text: "$300k",
-          color: "#FFF",
-          fontSize: "30px",
-          fontWeight: "bold",
-        },
-        labelClass: "marker-label",
-        title: "Hello World!",
-        visible: true
-      });
-
-    }
-     */
-    /* /addMarker() */
-    /* addMarker({lat: 26.8206, lng: 30.8025});
-
-    google.maps.event.addListener(map, 'click', function( event ){
-        // alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
-        //     -22.593726063929296 , longitude: 122.27783203125
-
-        var newLocation = {lat: event.latLng.lat(), lng: event.latLng.lng()}
-        addMarker(newLocation);
-        //marker.setPosition(newLocation);
-    });
- */
-
-
-
-    // add marker
-    /* var marker = new google.maps.Marker({
-        position: {lat: -25.344, lng: 131.036},
-        map : map,
-    });
-
-    var infoWindow = new google.maps.InfoWindow({
-        content: '<h1>Hello There</h1>'
-    });
-
-    marker.addListener('click', function(){
-        infoWindow.open( map , marker );
-    }); */
 
   }/* /initMap() */
 
