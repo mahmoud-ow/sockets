@@ -145,7 +145,7 @@ class UserController extends Controller
 
 
         Social::updateOrCreate([
-            'id' => '1'
+            'user_id' => auth()->id(),
         ], [
             'fb_url' => $fb_url,
             'twt_url' => $twt_url,

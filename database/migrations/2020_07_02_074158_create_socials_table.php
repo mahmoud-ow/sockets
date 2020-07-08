@@ -17,6 +17,7 @@ class CreateSocialsTable extends Migration
             $table->id();
             
             
+            $table->integer('user_id');
             $table->longText('fb_url')->nullable();
             $table->longText('twt_url')->nullable();
             $table->longText('gplus_url')->nullable();

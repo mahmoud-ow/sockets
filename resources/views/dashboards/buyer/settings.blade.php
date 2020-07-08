@@ -4,7 +4,7 @@
 @section('header')
 @parent
 
-<title>Admin Dashboard</title>
+<title>Buyer Dashboard</title>
 
 <link href='{{asset($asset."/css/app.css?ver=".$ver)}}' rel='stylesheet' type='text/css'>
 <link href='{{asset($asset."/css/dashboards/dashboards.css?ver=".$ver)}}' rel='stylesheet' type='text/css'>
@@ -349,10 +349,12 @@
     var bindMarkerinfo = function(marker) {
       google.maps.event.addListener(marker, "click", function (point) {
         var markerId = getMarkerUniqueId(point.latLng.lat(), point.latLng.lng()); // get marker id by using clicked point's coordinate
+        //console.log(markerId);
         var marker = markers[markerId]; // find marker
         infowindow = new google.maps.InfoWindow();
         infowindow.setContent(marker.html);
         infowindow.open(map, marker);
+        
         // window.removeMarker(marker, markerId); // remove it
       });
     };
@@ -416,11 +418,8 @@
    */
    window.saveData = function (lat,lng) {
 
-    
     // get description
     var description = document.getElementById('manual_description').value;
-    // alert(lat + ":" + lng);
-
 
     axios.post('/locations/', {
       lat: lat,
@@ -429,29 +428,57 @@
     })
       .then(function (response) {
 
-        
-
         if (response.data.error == 0) {
 
+          var markerId = lat + '_' + lng;
+          var marker = markers[markerId];
+          window.removeMarker(marker, markerId);
 
-          var markerId = getMarkerUniqueId(lat,lng); // get marker id by using clicked point's coordinate
+          locations.forEach(function(el){
+            var markerId = el.lat + '_' + el.lng;
+            var marker = markers[markerId];
+            window.removeMarker(marker, markerId); // remove it
+          });
+
+
+          response.data.locations.forEach(function(location){
+            var lat = location.lat; // lat of clicked point
+            var lng = location.lng; // lng of clicked point
+            var markerId = lat + '_' + lng; // an that will be used to cache this marker in markers object.
+            var marker = new google.maps.Marker({
+                position:  new google.maps.LatLng(lat, lng),
+                map: map,
+                icon :   locations[i][4] === '1' ?  red_icon  : purple_icon,
+                animation: google.maps.Animation.DROP,
+                id: 'marker_' + markerId,
+                html: "    <div id='info_"+markerId+"'>\n" +
+                "        <div class=\"map1\">\n" +        
+                "                 <textarea  id='manual_description' placeholder='قم بكتابة وصف للمكان هنا'>"+location.description+"</textarea>\n" +
+                "                 <button type='button' id='deleteLocationInput' onclick='window.deleteLoction( "+lat+" , "+lng+")'>حذف</button>" +
+                "        </div>\n" +
+                "    </div>"
+            });
+            markers[markerId] = marker; // cache marker in markers object
+            bindMarkerEvents(marker); // bind right click event to marker
+            bindMarkerinfo(marker); // bind infowindow with click event to marker "+location.id+"
+          });
+
+          window.Toast.fire({
+            icon: 'success',
+            title: response.data.message
+          })
+
+          /* var markerId = getMarkerUniqueId(lat,lng); // get marker id by using clicked point's coordinate
           var manual_marker = markers[markerId]; // find marker
           manual_marker.setIcon(purple_icon);
           infowindow.close();
-          infowindow.setContent("<div style=' color: #06b99b; font-size: 20px;'> تم إضافة المكان بنجاح</div>");
-          infowindow.open(map, manual_marker);
+          infowindow.setContent("<div style=' color: #06b99b; font-size: 20px;'>تم حفظ البيانات</div>");
+          infowindow.open(map, manual_marker); */
 
         } else {
-
-    
           infowindow.setContent("<div style='color: red; font-size: 25px;'>Inserting Errors</div>");
-
         }
-
       });
-
-
-
   }
 
   function downloadUrl(url, callback) {
@@ -481,9 +508,12 @@
 
     var locations = {!! $locations !!};
     
+    console.log(locations);
+    
+
     locations.forEach(function(location){
       var lat = location.lat; // lat of clicked point
-      var lng = location.long; // lng of clicked point
+      var lng = location.lng; // lng of clicked point
       var markerId = lat + '_' + lng; // an that will be used to cache this marker in markers object.
       var marker = new google.maps.Marker({
           position:  new google.maps.LatLng(lat, lng),

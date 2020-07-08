@@ -7,7 +7,7 @@
 <title>Dashboard - Users</title>
 
 <link href='{{asset($asset."/css/app.css?ver=".$ver)}}' rel='stylesheet' type='text/css'>
-<link href='{{asset($asset."/css/dashboards/admin/settings.css?ver=".$ver)}}' rel='stylesheet' type='text/css'>
+<link href='{{asset($asset."/css/dashboards/dashboards.css?ver=".$ver)}}' rel='stylesheet' type='text/css'>
 
 
 

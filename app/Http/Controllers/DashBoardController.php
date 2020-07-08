@@ -23,9 +23,8 @@ class DashBoardController extends Controller
             return self::adminDashboard();
 
         } elseif( auth()->user()->account_type == 'buyer' ) { 
-            // user
-            return 'buyer';
-            return self::userDashboard();
+            // buyer
+            return self::buyerDashboard();
         } elseif ( auth()->user()->account_type == 'seller' ){
             return 'seller';
         } elseif ( auth()->user()->account_type == 'shop'  ){
@@ -43,6 +42,13 @@ class DashBoardController extends Controller
     public static function adminDashboard(){
         $locations = \App\Location::where('user_id', auth()->id())->get();
         return view('dashboards.admin.settings', compact('locations'));
+    }/* /adminDashboard() */
+    
+    
+    public static function buyerDashboard(){
+        $social = self::getAccountSocial();
+        $locations = \App\Location::where('user_id', auth()->id())->get();
+        return view('dashboards.buyer.settings', compact('locations', 'social'));
     }/* /adminDashboard() */
 
     
@@ -62,6 +68,12 @@ class DashBoardController extends Controller
 
 
  
-
+    public static function getAccountSocial(){
+        $social = Social::firstOrCreate([
+            'user_id' => auth()->id(),
+        ], [
+        ]);
+        return $social;
+    }
 
 }/* /CLASS */

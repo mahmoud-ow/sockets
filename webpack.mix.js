@@ -20,5 +20,6 @@ mix.js('resources/js/app.js', 'public/js')
     // dashboards ( admin )
     .js('resources/js/dashboards/admin/settings.js', 'public/js/dashboards/admin')
     .sass('resources/sass/dashboards/admin/settings.scss', 'public/css/dashboards/admin')
+    .sass('resources/sass/dashboards/dashboards.scss', 'public/css/dashboards/')
     
     .options({processCssUrls: false});

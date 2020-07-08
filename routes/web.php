@@ -5,6 +5,15 @@ use Illuminate\Support\Facades\Route;
 use App\User;
 
 
+
+Route::get('/round', function () {
+
+    $number = round(-2.99487500, 8);
+
+    return  $number;
+});
+
+
 Route::get('test', function () {
     
     $accounts = DB::table('users')->select('*');
